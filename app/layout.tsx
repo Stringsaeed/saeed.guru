@@ -13,7 +13,6 @@ export const metadata: Metadata = {
   title: "Muhammed Saeed | React Native Engineer",
   description:
     "Portfolio of Muhammed Saeed, React Native Engineer with 7+ years of experience in mobile development, UI/UX, and AI-driven applications.",
-  generator: "v0.dev",
 };
 
 export default function RootLayout({

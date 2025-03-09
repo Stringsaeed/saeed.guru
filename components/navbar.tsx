@@ -38,7 +38,7 @@ export default function Navbar() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
-          ? "bg-background/80 backdrop-blur-md shadow-md py-2"
+          ? "bg-background/80 backdrop-blur-sm shadow-md py-2"
           : "bg-transparent py-4"
       )}
     >
@@ -79,7 +79,7 @@ export default function Navbar() {
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
           exit={{ opacity: 0, height: 0 }}
-          className="md:hidden bg-background/95 backdrop-blur-md shadow-md"
+          className="md:hidden bg-background/95 backdrop-blur-sm shadow-md"
         >
           <nav className="container mx-auto px-4 py-4 flex flex-col space-y-4">
             {navItems.map((item) => (

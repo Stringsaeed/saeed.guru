@@ -97,14 +97,14 @@ export default function Experience() {
                 className={cn(
                   "relative mb-12 md:mb-24 md:w-1/2 pl-10 md:pl-0",
                   index % 2 === 0
-                    ? "md:pr-12 md:text-right md:ml-0 md:mr-auto"
+                    ? "md:pr-12 md:ml-0 md:mr-auto"
                     : "md:pl-12 md:ml-auto md:mr-0"
                 )}
               >
                 {/* Timeline dot */}
                 <div
                   className={cn(
-                    "absolute left-0 top-0 w-4 h-4 rounded-full bg-primary z-10",
+                    "absolute -left-1.5 top-0 w-4 h-4 rounded-full bg-primary z-10",
                     index % 2 === 0
                       ? "md:left-auto md:right-0 md:transform md:translate-x-1/2"
                       : "md:right-auto md:left-0 md:transform md:-translate-x-1/2"
@@ -115,18 +115,22 @@ export default function Experience() {
                 <div className="bg-card rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
                   <div className="flex items-center mb-3">
                     <Briefcase className="h-5 w-5 text-primary mr-2" />
-                    <h3 className="text-xl font-semibold">{exp.title}</h3>
+                    <h3 className="text-lg md:text-xl font-semibold">
+                      {exp.title}
+                    </h3>
                   </div>
 
                   <div className="mb-3">
-                    <div className="text-lg font-medium">{exp.company}</div>
+                    <div className="text-base md:text-lg font-medium">
+                      {exp.company}
+                    </div>
                     <div className="text-foreground/70">{exp.location}</div>
                   </div>
 
                   <div
                     className={cn(
                       "flex items-center  mb-4 text-sm text-foreground/60",
-                      index % 2 === 0 ? "md:justify-end" : "md:justify-start"
+                      "md:justify-start"
                     )}
                   >
                     <Calendar className="h-4 w-4 mr-1" />
