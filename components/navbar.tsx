@@ -43,7 +43,7 @@ export default function Navbar() {
       )}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <Link href="#home" className="w-10 h-10">
+        <Link href="#home" className="w-10 h-10 rounded-full overflow-hidden bg-white border border-gray-200">
           <SaeedAvi />
         </Link>
 
