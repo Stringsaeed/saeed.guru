@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Briefcase, Calendar, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Timeline } from "./ui/timeline";
 
 const experiences = [
   {
@@ -64,6 +65,60 @@ const experiences = [
   },
 ];
 
+const expForTimeline = experiences.map((exp, index) => ({
+  title: exp.title,
+  content: (
+    <motion.div
+      key={index}
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.2 }}
+      className={cn("relative mb-12 md:mb-24 md:w-1/2 pl-10 md:pl-0")}
+    >
+      {/* Content */}
+      <div className="bg-card rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
+        <div className="mb-3">
+          <div className="text-base md:text-lg font-medium">{exp.company}</div>
+          <div className="text-foreground/70">{exp.location}</div>
+        </div>
+
+        <div
+          className={cn(
+            "flex items-center  mb-4 text-sm text-foreground/60",
+            "md:justify-start"
+          )}
+        >
+          <Calendar className="h-4 w-4 mr-1" />
+          <span>{exp.period}</span>
+        </div>
+
+        <div className="mb-4">
+          <div className="text-sm font-medium text-primary mb-1">
+            Technology Stack:
+          </div>
+          <div className="text-foreground/80">{exp.stack}</div>
+        </div>
+
+        <div>
+          <div className="text-sm font-medium text-primary mb-2">
+            Key Contributions:
+          </div>
+          <ul className="space-y-1.5">
+            {exp.contributions.map((contribution, i) => (
+              <li key={i} className="flex items-start">
+                <ChevronRight className="h-4 w-4 text-primary mt-0.5 mr-1 flex-shrink-0" />
+                <span className="text-sm text-foreground/80">
+                  {contribution}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </motion.div>
+  ),
+}));
+
 export default function Experience() {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -76,94 +131,7 @@ export default function Experience() {
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
           Work <span className="text-primary">Experience</span>
         </h2>
-
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            ref={ref}
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.6 }}
-            className="relative"
-          >
-            {/* Timeline line */}
-            <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-0.5 bg-primary/30"></div>
-
-            {experiences.map((exp, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-                className={cn(
-                  "relative mb-12 md:mb-24 md:w-1/2 pl-10 md:pl-0",
-                  index % 2 === 0
-                    ? "md:pr-12 md:ml-0 md:mr-auto"
-                    : "md:pl-12 md:ml-auto md:mr-0"
-                )}
-              >
-                {/* Timeline dot */}
-                <div
-                  className={cn(
-                    "absolute -left-1.5 top-0 w-4 h-4 rounded-full bg-primary z-10",
-                    index % 2 === 0
-                      ? "md:left-auto md:right-0 md:transform md:translate-x-1/2"
-                      : "md:right-auto md:left-0 md:transform md:-translate-x-1/2"
-                  )}
-                />
-
-                {/* Content */}
-                <div className="bg-card rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
-                  <div className="flex items-center mb-3">
-                    <Briefcase className="h-5 w-5 text-primary mr-2" />
-                    <h3 className="text-lg md:text-xl font-semibold">
-                      {exp.title}
-                    </h3>
-                  </div>
-
-                  <div className="mb-3">
-                    <div className="text-base md:text-lg font-medium">
-                      {exp.company}
-                    </div>
-                    <div className="text-foreground/70">{exp.location}</div>
-                  </div>
-
-                  <div
-                    className={cn(
-                      "flex items-center  mb-4 text-sm text-foreground/60",
-                      "md:justify-start"
-                    )}
-                  >
-                    <Calendar className="h-4 w-4 mr-1" />
-                    <span>{exp.period}</span>
-                  </div>
-
-                  <div className="mb-4">
-                    <div className="text-sm font-medium text-primary mb-1">
-                      Technology Stack:
-                    </div>
-                    <div className="text-foreground/80">{exp.stack}</div>
-                  </div>
-
-                  <div>
-                    <div className="text-sm font-medium text-primary mb-2">
-                      Key Contributions:
-                    </div>
-                    <ul className="space-y-1.5">
-                      {exp.contributions.map((contribution, i) => (
-                        <li key={i} className="flex items-start">
-                          <ChevronRight className="h-4 w-4 text-primary mt-0.5 mr-1 flex-shrink-0" />
-                          <span className="text-sm text-foreground/80">
-                            {contribution}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
+        <Timeline data={expForTimeline} />
       </div>
     </section>
   );

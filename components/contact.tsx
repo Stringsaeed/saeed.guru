@@ -77,12 +77,12 @@ export default function Contact() {
                 <div>
                   <h4 className="font-medium mb-1">LinkedIn</h4>
                   <Link
-                    href="https://linkedin.com"
+                    href="https://linkedin.com/in/stringsaeed"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-foreground/70 hover:text-primary transition-colors"
                   >
-                    linkedin.com/in/muhammed-saeed
+                    linkedin.com/in/stringsaeed
                   </Link>
                 </div>
               </div>
@@ -94,7 +94,7 @@ export default function Contact() {
                 <div>
                   <h4 className="font-medium mb-1">GitHub</h4>
                   <Link
-                    href="https://github.com"
+                    href="https://github.com/stringsaeed"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-foreground/70 hover:text-primary transition-colors"
