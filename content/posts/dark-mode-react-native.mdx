@@ -1,0 +1,111 @@
+---
+title: 'Dark Mode in React Native'
+author: 'Muhammed Ibrahim'
+date: 'October 14, 2023'
+cover: '/assets/dark_mode_cover.png'
+description: 'Implementing Dark Mode in React Native: A Comprehensive Guide'
+tags: ['react-native', 'dark-mode', 'react-native-dark-mode']
+published: true
+---
+
+As a React Native developer committed to delivering exceptional user experiences, I always strive to optimize the user interface by incorporating features like dark mode. In this guide, I'll share my journey of implementing a seamless dark mode experience in a React Native application.
+
+## The Challenge: Consistency in Theme Selection
+
+While working on integrating a dark theme feature, a key challenge emerged. When a user selects a preferred theme that doesn't align with the system theme, the native components inadvertently adopt the system theme. This inconsistency disrupts the application's appearance, prompting me to devise a solution for a consistent user experience, regardless of the chosen theme.
+
+### Step 1: Creating a React Context for the Theme
+
+To establish a robust theming system, the journey begins with creating a React context dedicated to managing the theme. This context facilitates theme sharing across all components within the application. Here's how you can create this context:
+
+```typescript
+import React, { createContext, useState, useContext } from 'react';
+
+// Create a Context for the theme
+const ThemeContext = createContext();
+
+// Create a custom hook to use the ThemeContext
+export const useTheme = () => useContext(ThemeContext);
+
+// Create a ThemeProvider component
+export const ThemeProvider = ({ children }) => {
+  const [theme, setTheme] = useState('light'); // Default to light theme
+
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+  };
+
+  return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>;
+};
+```
+
+### Step 2: Enabling User Theme Persistence Using Storage
+
+To ensure the user's chosen theme persists across app sessions, implementing storage mechanisms is vital. This step involves updating the `onUserChangeTheme` function to handle theme persistence efficiently. For example, using AsyncStorage:
+
+```typescript
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+// Inside your ThemeProvider component
+useEffect(() => {
+  const loadTheme = async () => {
+    const storedTheme = await AsyncStorage.getItem('user-theme');
+    if (storedTheme) {
+      setTheme(storedTheme);
+    }
+  };
+  loadTheme();
+}, []);
+
+const toggleTheme = async () => {
+  const newTheme = theme === 'light' ? 'dark' : 'light';
+  setTheme(newTheme);
+  await AsyncStorage.setItem('user-theme', newTheme);
+};
+```
+
+### Step 3: Integrating the Appearance API
+
+Incorporating the [Appearance API](https://reactnative.dev/docs/appearance) from React Native allows us to explicitly inform native components about the user's color scheme preferences. This step is crucial to ensure a consistent and controlled theme experience.
+
+```typescript
+import { Appearance } from 'react-native';
+
+// Inside your ThemeProvider component
+useEffect(() => {
+  const systemTheme = Appearance.getColorScheme();
+  if (!storedTheme) {
+    setTheme(systemTheme);
+  }
+}, []);
+```
+
+### Exploring Theme Variations
+
+Let's examine how the application appears with and without the Appearance API, showcasing the seamless transition between light and dark themes.
+
+**Without Appearance API:**
+
+- System is dark, and user's selection is light:
+
+  ![System is dark and user's selection is light](/assets/dark_mode_image1.png)
+
+- System is light, and user's selection is dark:
+
+  ![System is light and user's selection is dark](/assets/dark_mode_image2.png)
+
+**With Appearance API:**
+
+Regardless of the system theme, the user's selection is respected:
+
+- User's selection is dark:
+
+  ![User's selection is dark](/assets/dark_mode_image3.png)
+
+- User's selection is light:
+
+  ![User's selection is light](/assets/dark_mode_image4.png)
+
+## Conclusion
+
+Implementing dark mode in a React Native application significantly enhances the user experience, providing a visually appealing theme option. Through the strategic use of a React context for theme management, coupled with theme persistence and native side communication, developers can establish a robust theming system. The added integration of the Appearance API further augments the flexibility and usability of the dark mode feature. By following this comprehensive guide, developers can seamlessly implement dark mode, contributing to a delightful user experience in their React Native applications.

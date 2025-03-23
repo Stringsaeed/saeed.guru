@@ -1,5 +1,7 @@
+import Image from 'next/image';
+
 interface WorkItemProps {
-  logo: string;
+  logo: React.ReactNode;
   company: string;
   role: string;
   period: string;
@@ -14,7 +16,7 @@ function WorkItem({ logo, company, role, period, link }: WorkItemProps) {
       target="_blank"
       rel="noopener noreferrer"
     >
-      <div className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-muted text-xl">
+      <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border border-border bg-muted text-xl">
         {logo}
       </div>
       <div className="flex-1">
@@ -33,28 +35,28 @@ export default function WorkExperience() {
 
       <div className="space-y-8">
         <WorkItem
-          logo="🛒"
+          logo={<Image src="/dubizzle.png" alt="Dubizzle" width={40} height={40} />}
           company="Dubizzle"
           role="Software Engineer III"
           period="Aug 2024 - Feb 2025"
           link="https://dubai.dubizzle.com/"
         />
         <WorkItem
-          logo="📱"
+          logo={<Image src="/du.png" alt="du" width={40} height={40} />}
           company="Linnk (Du)"
           role="Senior React Native Developer"
           period="Apr 2024 - Aug 2024"
           link="https://du.ae"
         />
         <WorkItem
-          logo="💰"
+          logo={<Image src="/nomo.png" alt="nomo" width={40} height={40} />}
           company="Nomo Fintech"
           role="Senior Software Engineer"
           period="Feb 2023 - May 2024"
           link="https://nomobank.com/"
         />
         <WorkItem
-          logo="🍞"
+          logo={<Image src="/breadfast.png" alt="Breadfast" width={40} height={40} />}
           company="Breadfast"
           role="Senior Software Engineer"
           period="Feb 2022 - Mar 2023"
