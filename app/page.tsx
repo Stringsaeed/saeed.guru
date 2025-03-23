@@ -1,22 +1,19 @@
-import Hero from "@/components/hero"
-import About from "@/components/about"
-import Skills from "@/components/skills"
-import Experience from "@/components/experience"
-import Projects from "@/components/projects"
-import Contact from "@/components/contact"
-import Footer from "@/components/footer"
+import Header from "@/components/header";
+import WorkExperience from "@/components/work-experience";
+import ProjectSection from "@/components/project-section";
+import Writing from "@/components/writing";
+import SocialLinks from "@/components/social-links";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background">
-      <Hero />
-      <About />
-      <Skills />
-      <Experience />
-      <Projects />
-      <Contact />
-      <Footer />
-    </main>
-  )
+    <div className="min-h-screen bg-background text-foreground font-sans">
+      <div className="max-w-2xl mx-auto px-6 py-32">
+        <Header />
+        <WorkExperience />
+        <ProjectSection />
+        <Writing />
+        <SocialLinks />
+      </div>
+    </div>
+  );
 }
-
