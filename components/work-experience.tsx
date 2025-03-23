@@ -64,7 +64,7 @@ export default function WorkExperience() {
           logo="🚀"
           company="Anspire Agency"
           role="Senior Software Developer"
-          period="Dec 2021 - Jun 2022"
+          period="Apr 2020 - Jun 2022"
           link="https://anspire.agency/"
         />
       </div>
