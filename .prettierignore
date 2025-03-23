@@ -1,0 +1,11 @@
+.next
+node_modules
+public
+build
+dist
+.vercel
+.turbo
+coverage
+storybook-static
+*.min.js
+*.d.ts

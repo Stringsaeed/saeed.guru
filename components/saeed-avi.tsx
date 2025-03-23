@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { SVGProps, memo } from "react";
+import { SVGProps, memo } from 'react';
 
 const SaeedAviComponent = (props: SVGProps<SVGSVGElement>) => (
   <svg xmlns="http://www.w3.org/2000/svg" {...props} viewBox="0 0 306 306">
@@ -11,8 +11,8 @@ const SaeedAviComponent = (props: SVGProps<SVGSVGElement>) => (
       fill="none"
       style={{
         zIndex: 2,
-        position: "absolute",
-        pointerEvents: "none",
+        position: 'absolute',
+        pointerEvents: 'none',
       }}
       {...props}
     >
@@ -32,8 +32,8 @@ const SaeedAviComponent = (props: SVGProps<SVGSVGElement>) => (
       fill="none"
       style={{
         zIndex: 3,
-        position: "absolute",
-        pointerEvents: "none",
+        position: 'absolute',
+        pointerEvents: 'none',
       }}
       {...props}
     >
@@ -53,7 +53,7 @@ const SaeedAviComponent = (props: SVGProps<SVGSVGElement>) => (
         y={205}
         maskUnits="userSpaceOnUse"
         style={{
-          maskType: "alpha",
+          maskType: 'alpha',
         }}
       >
         <path
@@ -108,8 +108,8 @@ const SaeedAviComponent = (props: SVGProps<SVGSVGElement>) => (
       fill="none"
       style={{
         zIndex: 4,
-        position: "absolute",
-        pointerEvents: "none",
+        position: 'absolute',
+        pointerEvents: 'none',
       }}
       {...props}
     >
@@ -137,10 +137,7 @@ const SaeedAviComponent = (props: SVGProps<SVGSVGElement>) => (
         fill="#000"
         d="M111.7 177.4c-2.3-3.8-5.2-7.2-7.9-10.7-2.7-3.7-4.9-7.6-6.7-11.8-10.2-24.7-8.7-57 9.4-77.8 12.4-14.2 32-18.9 50-17.9 18 1.1 36.7 5.7 50 18.7 7.7 7.5 12.6 17.5 14.8 27.9.7 3.3.2 6.9-.6 10-2.3 8.7-4.5 17-4.7 26 .1 13.4-.3 27.1-4.2 40-2.8 8.6-6.1 17.2-11.3 24.7-5.4 7.6-13.5 13.7-22.8 15.5-18.7 3.8-36.2-8-48.6-20.8-.5-.6.2-1.3.8-.9 7.1 5.4 14.4 10.4 22.3 13.8 22.8 10.5 41.7.8 51.7-21.2 8.4-16 10.8-33.3 10.1-51.2 0-4.5.2-9 .8-13.5.6-6.5 2.8-13 2.7-19.4-1.7-10.4-6.5-20.4-13.7-28.1-17.1-18.1-49.9-23.4-72.9-15.2-27.1 9.6-34.4 36.9-35.9 63-1 15.6 3.6 30.9 15.4 41.6l4.7 4.9c1.6 2.2-1.8 4.8-3.4 2.4Z"
       />
-      <path
-        fill="#fff"
-        d="M123.5 145.6s-3.1-15-17.7-13.2c-12.6 1.6-17 31.8 11.6 40.2"
-      />
+      <path fill="#fff" d="M123.5 145.6s-3.1-15-17.7-13.2c-12.6 1.6-17 31.8 11.6 40.2" />
       <path
         fill="#000"
         d="M116.1 159.5c-2.3-1.3-3.9-3.5-4-6.2.1-2 .4-4.3-.1-6.3-.3-1.9-2.3-2.4-3.8-2.3-1.6.3-2.6 2.3-2.9 3.9 0 .1-.1.4-.1.5-.1.5-.9.5-1.1 0-1.3-3.9 1.6-8.2 5.8-7.7 5.9.4 6.7 6.6 5.6 11.3-.6 2 .2 3.8 1.3 5.5l.2.3c.5.6-.3 1.4-.9 1Zm80-24.5c1.5 7.1 4.3 13.7 7.8 19.9 3.1 7.6-4.9 14.8-12 14.5-.8 0-.9-1.1-.2-1.3 4.5-1.4 8.6-4.4 9.3-9 .3-1.4-.1-2.6-.8-3.8-3.3-6.2-5.3-13.3-4.8-20.3 0-.5.7-.5.7 0Z"
@@ -157,8 +154,8 @@ const SaeedAviComponent = (props: SVGProps<SVGSVGElement>) => (
       fill="none"
       style={{
         zIndex: 5,
-        position: "absolute",
-        pointerEvents: "none",
+        position: 'absolute',
+        pointerEvents: 'none',
       }}
       {...props}
     >
@@ -174,8 +171,8 @@ const SaeedAviComponent = (props: SVGProps<SVGSVGElement>) => (
       fill="none"
       style={{
         zIndex: 6,
-        position: "absolute",
-        pointerEvents: "none",
+        position: 'absolute',
+        pointerEvents: 'none',
       }}
       {...props}
     >
@@ -195,8 +192,8 @@ const SaeedAviComponent = (props: SVGProps<SVGSVGElement>) => (
       fill="none"
       style={{
         zIndex: 7,
-        position: "absolute",
-        pointerEvents: "none",
+        position: 'absolute',
+        pointerEvents: 'none',
       }}
       {...props}
     >
@@ -212,8 +209,8 @@ const SaeedAviComponent = (props: SVGProps<SVGSVGElement>) => (
       fill="none"
       style={{
         zIndex: 8,
-        position: "absolute",
-        pointerEvents: "none",
+        position: 'absolute',
+        pointerEvents: 'none',
       }}
       {...props}
     />
@@ -224,8 +221,8 @@ const SaeedAviComponent = (props: SVGProps<SVGSVGElement>) => (
       fill="none"
       style={{
         zIndex: 9,
-        position: "absolute",
-        pointerEvents: "none",
+        position: 'absolute',
+        pointerEvents: 'none',
       }}
       {...props}
     >
