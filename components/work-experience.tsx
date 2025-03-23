@@ -63,7 +63,15 @@ export default function WorkExperience() {
           link="https://breadfast.com/"
         />
         <WorkItem
-          logo="🚀"
+          logo={
+            <Image
+              src="https://anspire.agency/wp-content/uploads/2019/02/anspire_white.svg"
+              alt="Anspire Agency"
+              className="p-1"
+              width={40}
+              height={40}
+            />
+          }
           company="Anspire Agency"
           role="Senior Software Developer"
           period="Apr 2020 - Jun 2022"
