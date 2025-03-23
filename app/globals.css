@@ -62,4 +62,7 @@
   html {
     scroll-behavior: smooth;
   }
+  ::selection {
+    @apply bg-primary text-primary-foreground;
+  }
 }
