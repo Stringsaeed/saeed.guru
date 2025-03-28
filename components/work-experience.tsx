@@ -39,7 +39,7 @@ export default function WorkExperience() {
           company="Dubizzle"
           role="Software Engineer III"
           period="Aug 2024 - Feb 2025"
-          link="https://dubai.dubizzle.com/"
+          link="https://business.dubizzle.com/?page_id=2444"
         />
         <WorkItem
           logo={<Image src="/du.png" alt="du" width={40} height={40} />}
