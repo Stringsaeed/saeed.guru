@@ -17,6 +17,14 @@ export default [
         sourceType: 'module',
       },
     },
+    settings: {
+      tailwindcss: {
+        callees: ['cn', 'cva'],
+      },
+      next: {
+        rootDir: '.',
+      },
+    },
     rules: {
       // Next.js rules
       '@next/next/no-html-link-for-pages': 'error',
@@ -25,14 +33,6 @@ export default [
       // Tailwind rules
       'tailwindcss/no-custom-classname': 'warn',
       'tailwindcss/classnames-order': 'warn',
-    },
-    settings: {
-      tailwindcss: {
-        callees: ['cn', 'cva'],
-      },
-      next: {
-        rootDir: '.',
-      },
     },
   },
 ];
