@@ -1,8 +1,10 @@
 'use client';
 
 import { SiReact } from '@icons-pack/react-simple-icons';
+
 import Image from 'next/image';
 import DisableMenu from './disable-menu';
+import { ThemeToggle } from './ui/theme-toggle';
 
 const description = [
   'Software',
@@ -34,6 +36,8 @@ export default function Header() {
           <Image src="/profile_pic.webp" alt="Saeed picture" width={40} height={40} />
         </DisableMenu>
         <h1 className="text-3xl font-bold text-foreground">Saeed</h1>
+        <div className="flex-1" />
+        <ThemeToggle />
       </div>
       <p className="flex flex-row flex-wrap items-center gap-1 font-medium leading-relaxed text-muted-foreground">
         {description.map((item, index) => (

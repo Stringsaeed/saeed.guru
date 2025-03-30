@@ -35,43 +35,35 @@ export default function WorkExperience() {
 
       <div className="space-y-8">
         <WorkItem
-          logo={<Image src="/dubizzle.png" alt="Dubizzle" width={40} height={40} />}
+          logo={<Image src="/assets/dubizzle-3d.png" alt="Dubizzle" width={40} height={40} />}
           company="Dubizzle"
           role="Software Engineer III"
           period="Aug 2024 - Feb 2025"
           link="https://business.dubizzle.com/?page_id=2444"
         />
         <WorkItem
-          logo={<Image src="/du.png" alt="du" width={40} height={40} />}
-          company="Linnk (Du)"
+          logo={<Image src="/assets/du-3d.png" alt="du" width={40} height={40} />}
+          company="Du"
           role="Senior React Native Developer"
           period="Apr 2024 - Aug 2024"
           link="https://du.ae"
         />
         <WorkItem
-          logo={<Image src="/nomo.png" alt="nomo" width={40} height={40} />}
+          logo={<Image src="/assets/nomo-3d.png" alt="nomo" width={40} height={40} />}
           company="Nomo Fintech"
           role="Senior Software Engineer"
           period="Feb 2023 - May 2024"
           link="https://nomobank.com/"
         />
         <WorkItem
-          logo={<Image src="/breadfast.png" alt="Breadfast" width={40} height={40} />}
+          logo={<Image src="/assets/breadfast-3d.png" alt="Breadfast" width={40} height={40} />}
           company="Breadfast"
           role="Senior Software Engineer"
           period="Feb 2022 - Mar 2023"
           link="https://breadfast.com/"
         />
         <WorkItem
-          logo={
-            <Image
-              src="https://anspire.agency/wp-content/uploads/2019/02/anspire_white.svg"
-              alt="Anspire Agency"
-              className="p-1"
-              width={40}
-              height={40}
-            />
-          }
+          logo={<Image src="/assets/anspire-3d.png" alt="Anspire Agency" width={40} height={40} />}
           company="Anspire Agency"
           role="Senior Software Developer"
           period="Apr 2020 - Jun 2022"
