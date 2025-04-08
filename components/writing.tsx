@@ -1,6 +1,6 @@
 import { allPosts } from 'contentlayer/generated';
 import { Post } from 'contentlayer/generated';
-import { compareDesc } from 'date-fns';
+import { compareDesc, format } from 'date-fns';
 import Link from 'next/link';
 
 interface WritingItem {
@@ -8,14 +8,6 @@ interface WritingItem {
   description: string;
   link: string;
 }
-
-const writingItems: WritingItem[] = [
-  {
-    title: 'React Native Underlay Sheet UI',
-    description: 'Implementing an Underlay Sheet UI in React Native',
-    link: 'https://read.cv/sae/react-native-underlay-sheet-ui',
-  },
-];
 
 export default function Writing() {
   const posts = allPosts
@@ -25,6 +17,7 @@ export default function Writing() {
       title: post.title,
       description: post.description,
       link: post.url,
+      date: post.date,
     }));
 
   return (
@@ -33,14 +26,17 @@ export default function Writing() {
         <h2 className="text-lg font-bold text-foreground">Writings</h2>
       </div>
       <ul className="space-y-4">
-        {[...posts, ...writingItems].map((item) => (
+        {[...posts].map((item) => (
           <li key={item.title}>
             <Link
               href={item.link}
               className="group block"
-              target="_blank"
+              target={item.link.includes('read.cv') ? '_blank' : '_self'}
               rel="noopener noreferrer"
             >
+              <p className="text-xs text-muted-foreground/70">
+                {format(new Date(item.date), 'MMMM d, yyyy')}
+              </p>
               <span className="text-base font-semibold text-foreground transition-colors hover:text-primary">
                 {item.title}
               </span>

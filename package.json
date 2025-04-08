@@ -28,6 +28,7 @@
     "next-themes": "latest",
     "react": "^19",
     "react-dom": "^19",
+    "react-tweet": "^3.2.2",
     "reading-time": "^1.5.0",
     "tailwind-merge": "^3.0.2",
     "tailwindcss-animate": "^1.0.7"
@@ -44,6 +45,7 @@
     "eslint": "^9.23.0",
     "eslint-config-next": "^15.2.3",
     "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-perfectionist": "^4.11.0",
     "eslint-plugin-tailwindcss": "^3.18.0",
     "postcss": "^8",
     "prettier": "^3.5.3",

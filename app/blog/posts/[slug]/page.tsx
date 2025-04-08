@@ -1,15 +1,35 @@
-import { allPosts, Post } from 'contentlayer/generated';
 import { MDXRemote } from 'next-mdx-remote/rsc';
-import { notFound } from 'next/navigation';
-import Link from 'next/link';
+import { ComponentProps } from 'react';
+
 import { components } from '@/components/mdx-components';
+import { allPosts } from 'contentlayer/generated';
 import Image from 'next/image';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import rehypePrettyCode from 'rehype-pretty-code';
 
 interface PostPageProps {
   params: {
     slug: string;
   };
 }
+
+const mdxOptions: ComponentProps<typeof MDXRemote>['options'] = {
+  mdxOptions: {
+    rehypePlugins: [
+      [
+        rehypePrettyCode,
+        {
+          keepBackground: true,
+          theme: {
+            dark: 'github-dark-dimmed',
+            light: 'github-light',
+          },
+        },
+      ],
+    ],
+  },
+};
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
@@ -48,18 +68,9 @@ export default async function PostPage({ params }: PostPageProps) {
         )}
       </header>
 
-      <article className="prose dark:prose-invert prose-headings:font-bold prose-a:text-primary prose-a:no-underline hover:prose-a:text-primary/80 prose-img:rounded-lg max-w-none">
-        <MDXRemote source={post.body.raw} components={components} />
+      <article className="">
+        <MDXRemote source={post.body.raw} components={components} options={mdxOptions} />
       </article>
-
-      <div className="mt-16">
-        <Link
-          href="/blog"
-          className="text-primary underline underline-offset-4 transition-colors hover:text-primary/80"
-        >
-          ← Back to blog
-        </Link>
-      </div>
     </>
   );
 }

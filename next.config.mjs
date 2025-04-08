@@ -18,6 +18,7 @@ const nextConfig = {
   },
   reactStrictMode: true,
   swcMinify: true,
+  transpilePackages: ['react-tweet'],
 };
 
 export default withContentlayer(nextConfig);

@@ -1,7 +1,7 @@
 'use client';
 
-import * as React from 'react';
 import { useTheme } from 'next-themes';
+import * as React from 'react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -26,7 +26,7 @@ export function ThemeToggle() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem
-          onClick={() => setTheme('light')}
+          onClick={() => setTheme('system')}
           className="flex cursor-pointer items-center gap-2"
         >
           <Sun className="h-[1.2rem] w-[1.2rem]" />

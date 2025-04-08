@@ -1,6 +1,6 @@
-import Link from 'next/link';
 import { allPosts, Post } from 'contentlayer/generated';
 import { compareDesc } from 'date-fns';
+import Link from 'next/link';
 
 export default function BlogPage() {
   const posts = allPosts

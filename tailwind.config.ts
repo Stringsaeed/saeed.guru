@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+
 // @ts-expect-error - flattenColorPalette is not typed
 import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette';
 import { PluginAPI } from 'tailwindcss/types/config';

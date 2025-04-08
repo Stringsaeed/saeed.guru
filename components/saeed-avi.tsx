@@ -1,6 +1,6 @@
 'use client';
 
-import { SVGProps, memo } from 'react';
+import { memo, SVGProps } from 'react';
 
 const SaeedAviComponent = (props: SVGProps<SVGSVGElement>) => (
   <svg xmlns="http://www.w3.org/2000/svg" {...props} viewBox="0 0 306 306">

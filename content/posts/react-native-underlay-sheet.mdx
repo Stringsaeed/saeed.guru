@@ -1,0 +1,45 @@
+---
+title: 'React Native Underlay Sheet UI'
+date: 'March 23, 2024'
+cover: ''
+description: 'Implementing an Underlay Sheet UI in React Native'
+tags: ['react-native', 'underlay-sheet', 'react-native-underlay-sheet']
+published: true
+---
+
+I stumbled on this animation a couple of weeks ago on Twitter; it was a beautiful prototype from [@JordanAmblin](https://twitter.com/JordanAmblin).
+
+<Tweet id="1765047420390445293" />
+
+So I decided to recreate it in React Native using react-native-reanimated, react-native-gesture-handler, and [@gorhom/bottom-sheet](https://github.com/gorhom/react-native-bottom-sheet).
+
+The goal of this demo was to utilize actual components to ensure it can be easily adapted for real-world applications.
+
+<div className="flex flex-col gap-8">
+  <div className="flex gap-4">
+    <div className="flex-1">
+      <div className="mt-2">
+        <h4 className="mb-2 font-bold">iOS</h4>
+      </div>
+      <div className="max-w-[400px]">
+        <video className="rounded-lg" controls={false} autoPlay muted width="100%">
+          <source src="/assets/underlay-ios.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+    <div className="flex-1">
+      <div className="mt-2">
+        <h4 className="mb-2 font-bold">Android</h4>
+      </div>
+      <div className="max-w-[400px]">
+        <video className="rounded-lg" controls={false} autoPlay muted width="100%">
+          <source src="/assets/underlay-android.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  </div>
+</div>
+
+You can find the full example here: [Stringsaeed/underlay-pattern](https://github.com/Stringsaaed/underlay-pattern)

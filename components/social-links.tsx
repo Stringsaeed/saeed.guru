@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
+import { SiGithub, SiX } from '@icons-pack/react-simple-icons';
 import { Linkedin, Mail, Phone } from 'lucide-react';
-import { SiX, SiGithub } from '@icons-pack/react-simple-icons';
 import Link from 'next/link';
 
 export default function SocialLinks() {

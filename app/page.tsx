@@ -1,14 +1,14 @@
-import Header from '@/components/header';
-import WorkExperience from '@/components/work-experience';
+import Description from '@/components/description';
 import ProjectSection from '@/components/project-section';
-import Writing from '@/components/writing';
 import SocialLinks from '@/components/social-links';
+import WorkExperience from '@/components/work-experience';
+import Writing from '@/components/writing';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background font-sans text-foreground">
-      <div className="mx-auto max-w-2xl px-6 py-32">
-        <Header />
+    <div className="min-h-screen bg-background text-foreground">
+      <div className="mx-auto max-w-xl px-6 py-10">
+        <Description />
         <WorkExperience />
         <ProjectSection />
         <Writing />

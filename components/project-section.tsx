@@ -35,6 +35,14 @@ const projects: Project[] = [
     name: 'SA Growth',
   },
   {
+    title: 'MANO',
+    description: 'Revamping mobile application and add new features to the app',
+    link: 'https://www.manoafrica.com',
+    period: 'Dec 2023 - Feb 2024',
+    logo: '🛒',
+    name: 'MANO',
+  },
+  {
     title: 'Bynh',
     description: 'Mobile app featuring voice messaging, video calls, and real-time updates',
     link: 'https://bynh.sa/',

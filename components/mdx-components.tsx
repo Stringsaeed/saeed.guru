@@ -1,6 +1,8 @@
-import Link from 'next/link';
-import Image from 'next/image';
+import { EmbeddedTweet, Tweet } from 'react-tweet';
+
 import { MDXComponents } from 'mdx/types';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export const components: MDXComponents = {
   h1: ({ className, ...props }) => (
@@ -72,14 +74,16 @@ export const components: MDXComponents = {
     <td className={`border border-border px-4 py-2 text-left ${className}`} {...props} />
   ),
   pre: ({ className, ...props }) => (
-    <pre className={`mb-4 mt-6 overflow-x-auto rounded-lg bg-muted p-4 ${className}`} {...props} />
+    <pre className={`relative rounded-lg ${className}`} {...props} />
   ),
-  code: ({ className, ...props }) => (
-    <code
-      className={`relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm ${className}`}
-      {...props}
-    />
-  ),
+  code: ({ className, ...props }) => {
+    return (
+      <code
+        className={`relative overflow-x-auto rounded p-4 font-mono text-sm ${className}`}
+        {...props}
+      />
+    );
+  },
   Image: ({ className, alt, width, height, ...props }: any) => (
     <Image
       className={`h-28 w-28 rounded-md border border-border ${className}`}
@@ -90,6 +94,7 @@ export const components: MDXComponents = {
       {...props}
     />
   ),
+  Tweet: ({ id, ...props }: any) => <Tweet id={id} {...props} />,
 };
 
 export default components;

@@ -1,7 +1,7 @@
 import { defineDocumentType, makeSource } from 'contentlayer/source-files';
-import rehypePrettyCode from 'rehype-pretty-code';
-import readingTime from 'reading-time';
 import { format, parseISO } from 'date-fns';
+import readingTime from 'reading-time';
+import rehypePrettyCode from 'rehype-pretty-code';
 
 export const Post = defineDocumentType(() => ({
   name: 'Post',
@@ -71,7 +71,10 @@ const contentLayerConfig = makeSource({
       [
         rehypePrettyCode as any,
         {
-          theme: 'github-dark',
+          theme: {
+            dark: 'github-dark',
+            light: 'github-light',
+          },
           onVisitLine(node: any) {
             // Prevent lines from collapsing in `display: grid` mode, and
             // allow empty lines to be copy/pasted
