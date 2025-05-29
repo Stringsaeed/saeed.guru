@@ -20,6 +20,17 @@ export const metadata: Metadata = {
   title: 'Muhammed Saeed | React Native Engineer',
   description:
     'Portfolio of Muhammed Saeed, React Native Engineer with 7+ years of experience in mobile development, UI/UX, and AI-driven applications.',
+  keywords: ['react-native', 'react-native-engineer', 'react-native-developer'],
+  themeColor: [
+    { media: '(prefers-color-scheme: dark)', color: '#0C1D18' },
+    { media: '(prefers-color-scheme: light)', color: '#FAFAFA' },
+  ],
+  colorScheme: 'dark',
+  publisher: 'Muhammed Saeed',
+  authors: [{ name: 'Muhammed Saeed' }],
+  generator: 'Next.js',
+  referrer: 'origin',
+  applicationName: 'Muhammed Saeed',
 };
 
 export default async function RootLayout({
@@ -35,7 +46,7 @@ export default async function RootLayout({
             <BackButton />
             <Link href="/">
               <DisableMenu className="h-10 w-10 overflow-hidden rounded-full border border-border bg-background">
-                <Image src="/profile_pic.webp" alt="Saeedw picture" width={40} height={40} />
+                <Image src="/static/color.svg" alt="Saeed picture" width={40} height={40} />
               </DisableMenu>
             </Link>
             <Link href="/">

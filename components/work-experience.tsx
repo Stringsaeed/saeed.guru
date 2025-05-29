@@ -23,7 +23,9 @@ function WorkItem({ logo, company, role, period, link }: WorkItemProps) {
         <h3 className="font-semibold text-foreground">{company}</h3>
         <p className="text-sm font-medium text-muted-foreground sm:text-base">{role}</p>
       </div>
-      <div className="whitespace-nowrap text-sm text-muted-foreground">{period}</div>
+      <div className="whitespace-nowrap text-sm ordinal tabular-nums text-muted-foreground">
+        {period}
+      </div>
     </a>
   );
 }
@@ -34,6 +36,13 @@ export default function WorkExperience() {
       <h2 className="mb-6 text-lg font-bold text-foreground">Work</h2>
 
       <div className="space-y-8">
+        <WorkItem
+          logo={<Image src="/assets/thndr-3d.png" alt="Thndr" width={40} height={40} />}
+          company="Thndr"
+          role="Senior React Native Engineer"
+          period="Apr 2025 - Present"
+          link="https://thndr.app/"
+        />
         <WorkItem
           logo={<Image src="/assets/dubizzle-3d.png" alt="Dubizzle" width={40} height={40} />}
           company="Dubizzle"

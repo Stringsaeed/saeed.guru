@@ -1,13 +1,17 @@
 'use client';
 
 import { SiReact } from '@icons-pack/react-simple-icons';
+import Link from 'next/link';
 
 const description = [
   'Software',
   'engineer',
   'specializing',
   'in',
-  <span className="inline-flex flex-row items-center gap-1 rounded-md bg-muted px-2 py-1">
+  <span
+    key="react-native"
+    className="inline-flex flex-row items-center gap-1 rounded-md bg-muted px-2 py-1"
+  >
     react-native
     <SiReact className="inline-block h-4 w-4" />
   </span>,
@@ -15,13 +19,25 @@ const description = [
   'web',
   'based',
   'in',
-  <span className="inline-flex flex-row items-center gap-1 rounded-md bg-muted px-2 py-1">
+  <span
+    key="dubai"
+    className="inline-flex flex-row items-center gap-1 rounded-md bg-muted px-2 py-1"
+  >
     Dubai
   </span>,
   '.',
   'Currently',
-  'looking',
-  <span className="font-semibold">for a new challenge.</span>,
+  'innovating',
+  'at',
+  <Link
+    href="https://thndr.app/"
+    target="_blank"
+    rel="noopener noreferrer"
+    key="thndr"
+    className="font-semibold"
+  >
+    thndr
+  </Link>,
 ];
 
 export default function Description() {
