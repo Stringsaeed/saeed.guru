@@ -17,7 +17,6 @@ const nextConfig = {
     parallelServerCompiles: true,
   },
   reactStrictMode: true,
-  swcMinify: true,
   transpilePackages: ['react-tweet'],
 };
 

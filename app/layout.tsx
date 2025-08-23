@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import type React from 'react';
 
 import BackButton from '@/components/back-button';
@@ -21,16 +21,19 @@ export const metadata: Metadata = {
   description:
     'Portfolio of Muhammed Saeed, React Native Engineer with 7+ years of experience in mobile development, UI/UX, and AI-driven applications.',
   keywords: ['react-native', 'react-native-engineer', 'react-native-developer'],
-  themeColor: [
-    { media: '(prefers-color-scheme: dark)', color: '#0C1D18' },
-    { media: '(prefers-color-scheme: light)', color: '#FAFAFA' },
-  ],
-  colorScheme: 'dark',
   publisher: 'Muhammed Saeed',
   authors: [{ name: 'Muhammed Saeed' }],
   generator: 'Next.js',
   referrer: 'origin',
   applicationName: 'Muhammed Saeed',
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: dark)', color: '#0C1D18' },
+    { media: '(prefers-color-scheme: light)', color: '#FAFAFA' },
+  ],
+  colorScheme: 'dark',
 };
 
 export default async function RootLayout({

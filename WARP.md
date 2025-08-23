@@ -162,7 +162,7 @@ The project uses a sophisticated ESLint setup:
 
 ## Dependencies Management
 
-- Uses npm as package manager with `package-lock.json`
+- Uses bun as package manager with `bun.lock`
 - Next.js 15 with React 19
 - Key dependencies: Contentlayer, Tailwind CSS, Framer Motion, Lucide React
 - Development dependencies include comprehensive ESLint/Prettier setup
