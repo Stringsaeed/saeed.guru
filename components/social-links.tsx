@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { SiGithub, SiX } from '@icons-pack/react-simple-icons';
+import { SiBluesky, SiGithub, SiX } from '@icons-pack/react-simple-icons';
 import { Linkedin, Mail, Phone } from 'lucide-react';
 import Link from 'next/link';
 
@@ -54,6 +54,16 @@ export default function SocialLinks() {
         >
           <SiX className="h-5 w-5" />
           <span className="sr-only">Twitter</span>
+        </Button>
+      </Link>
+      <Link href="https://bsky.app/profile/saeed.guru" target="_blank" rel="noopener noreferrer">
+        <Button
+          variant="outline"
+          size="icon"
+          className="rounded-full transition-colors hover:border-primary hover:text-primary"
+        >
+          <SiBluesky className="h-5 w-5" />
+          <span className="sr-only">Bluesky</span>
         </Button>
       </Link>
     </footer>
