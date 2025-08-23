@@ -6,7 +6,7 @@ import Writing from '@/components/writing';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen text-foreground">
       <div className="mx-auto max-w-xl px-6 py-10">
         <Description />
         <WorkExperience />

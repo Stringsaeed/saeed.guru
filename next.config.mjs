@@ -17,7 +17,7 @@ const nextConfig = {
     parallelServerCompiles: true,
   },
   reactStrictMode: true,
-  transpilePackages: ['react-tweet'],
+  transpilePackages: ['react-tweet', 'next-mdx-remote'],
 };
 
 export default withContentlayer(nextConfig);
