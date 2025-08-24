@@ -114,15 +114,15 @@ export default function DynamicStatus() {
           <div
             className={`flex items-center gap-2 rounded-full px-3 py-1 text-sm ${config.bgColor}`}
           >
-            <div
-              className={`relative h-2 w-2 rounded-full ${config.color.replace('text-', 'bg-')}`}
-            >
-              {statusData.status === 'working' && (
+            {statusData.status === 'working' && (
+              <div
+                className={`relative h-2 w-2 rounded-full ${config.color.replace('text-', 'bg-')}`}
+              >
                 <div
                   className={`absolute inset-0 h-2 w-2 animate-ping rounded-full ${config.color.replace('text-', 'bg-')}`}
                 />
-              )}
-            </div>
+              </div>
+            )}
             <StatusIcon className={`h-3 w-3 ${config.color}`} />
             <span className={`font-medium ${config.color}`}>
               {statusData.status.charAt(0).toUpperCase() + statusData.status.slice(1)}
