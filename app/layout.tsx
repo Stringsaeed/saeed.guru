@@ -26,8 +26,8 @@ export const metadata: Metadata = {
   generator: 'Next.js',
   referrer: 'origin',
   applicationName: 'Muhammed Saeed',
-  pinterest: {
-    richPin: '562214e39cd3971a2a538633d1ca0e40',
+  other: {
+    'p:domain_verify': '562214e39cd3971a2a538633d1ca0e40',
   },
 };
 
