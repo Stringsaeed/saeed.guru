@@ -4,7 +4,6 @@ import { ComponentProps } from 'react';
 import { components } from '@/components/mdx-components';
 import { allPosts } from 'contentlayer/generated';
 import Image from 'next/image';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import rehypePrettyCode from 'rehype-pretty-code';
 

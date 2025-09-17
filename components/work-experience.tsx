@@ -32,7 +32,7 @@ function WorkItem({ logo, company, role, period, link }: WorkItemProps) {
 
 export default function WorkExperience() {
   return (
-    <section id="work" className="mb-16 w-full max-w-xl">
+    <section id="work" className="mb-16 w-full max-w-2xl">
       <h2 className="mb-6 text-lg font-bold text-foreground">Work</h2>
 
       <div className="space-y-8">

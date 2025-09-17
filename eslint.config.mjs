@@ -1,22 +1,29 @@
+import { FlatCompat } from '@eslint/eslintrc';
 import nextEslintPlugin from '@next/eslint-plugin-next';
 import perfectionist from 'eslint-plugin-perfectionist';
 import tailwindPlugin from 'eslint-plugin-tailwindcss';
+import { dirname } from 'path';
 import * as tseslint from 'typescript-eslint';
+import { fileURLToPath } from 'url';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 const compat = new FlatCompat({
   baseDirectory: __dirname,
 });
 
-const __dirname = dirname(__filename);
-const __filename = fileURLToPath(import.meta.url);
-import { FlatCompat } from '@eslint/eslintrc';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-
-export default [
+const config = [
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
   {
-    ignores: ['node_modules/**', '.next/**', 'out/**', 'build/**', 'next-env.d.ts'],
+    ignores: [
+      'node_modules/**',
+      '.next/**',
+      'out/**',
+      'build/**',
+      'next-env.d.ts',
+      '.contentlayer/**',
+      '.kiro/**',
+    ],
   },
   {
     files: ['**/*.{js,jsx,mjs,cjs,ts,tsx}'],
@@ -102,3 +109,5 @@ export default [
     },
   },
 ];
+
+export default config;

@@ -28,7 +28,7 @@ function formatTime(ms: number): string {
 export default function NowPlaying() {
   const [track, setTrack] = useState<SpotifyTrack | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchNowPlaying = async () => {

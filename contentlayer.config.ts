@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { defineDocumentType, makeSource } from 'contentlayer/source-files';
 import { format, parseISO } from 'date-fns';
 import readingTime from 'reading-time';

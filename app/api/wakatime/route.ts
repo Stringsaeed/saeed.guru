@@ -20,19 +20,6 @@ interface WakaTimeStats {
   };
 }
 
-interface WakaTimeSummaries {
-  data: Array<{
-    grand_total: {
-      total_seconds: number;
-      hours: number;
-      minutes: number;
-      digital: string;
-      text: string;
-    };
-    languages: WakaTimeLanguage[];
-  }>;
-}
-
 export async function GET() {
   try {
     const wakatimeApiKey = process.env.WAKATIME_API_KEY;
@@ -71,7 +58,7 @@ export async function GET() {
     }
 
     const stats: WakaTimeStats = await statsResponse.json();
-    const summaries: WakaTimeSummaries = await summariesResponse.json();
+    // const summaries: WakaTimeSummaries = await summariesResponse.json();
 
     // Calculate total hours from all time (approximate based on weekly average)
     const weeklyHours = stats.data.total_seconds / 3600;

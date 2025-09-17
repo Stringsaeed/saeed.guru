@@ -1,8 +1,9 @@
+import { ComponentProps } from 'react';
 import { Tweet } from 'react-tweet';
-import { Mermaid } from 'mdx-mermaid/lib/Mermaid';
 
+import { Mermaid } from 'mdx-mermaid/lib/Mermaid';
 import { MDXComponents } from 'mdx/types';
-import Image from 'next/image';
+import Image, { ImageProps } from 'next/image';
 import Link from 'next/link';
 
 export const components: MDXComponents = {
@@ -55,7 +56,7 @@ export const components: MDXComponents = {
       {...props}
     />
   ),
-  img: ({ className, alt, ...props }: any) => (
+  img: ({ className, alt, ...props }: ComponentProps<'img'>) => (
     // eslint-disable-next-line @next/next/no-img-element
     <img className={`rounded-md border border-border ${className}`} alt={alt} {...props} />
   ),
@@ -85,7 +86,7 @@ export const components: MDXComponents = {
       />
     );
   },
-  Image: ({ className, alt, width, height, ...props }: any) => (
+  Image: ({ className, alt, width, height, ...props }: ImageProps) => (
     <Image
       className={`h-28 w-28 rounded-md border border-border ${className}`}
       alt={alt}
@@ -95,7 +96,7 @@ export const components: MDXComponents = {
       {...props}
     />
   ),
-  Tweet: ({ id, ...props }: any) => <Tweet id={id} {...props} />,
+  Tweet: (props: ComponentProps<typeof Tweet>) => <Tweet {...props} />,
   mermaid: Mermaid,
   Mermaid,
 };

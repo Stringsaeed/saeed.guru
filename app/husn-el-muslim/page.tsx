@@ -55,7 +55,7 @@ export default function HusnElMuslimLanding() {
         {/* About Section */}
         <section className="mb-12 w-full text-center">
           <h2 className="mb-4 text-xl font-bold text-foreground">About Husn el Muslim</h2>
-          <p className="mx-auto max-w-xl text-muted-foreground">
+          <p className="mx-auto max-w-2xl text-muted-foreground">
             Husn el Muslim brings you the most important daily Adhkar and supplications from the
             authentic Sunnah, in a clean and modern interface. Stay connected to your faith,
             wherever you are.

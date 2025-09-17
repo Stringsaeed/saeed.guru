@@ -48,7 +48,7 @@ export default async function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={sans.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <nav className="mx-auto flex max-w-xl items-center gap-3 px-6 pt-32">
+          <nav className="mx-auto flex max-w-2xl items-center gap-3 px-6 pt-32">
             <BackButton />
             <Link href="/">
               <DisableMenu className="h-10 w-10 overflow-hidden rounded-full border border-border bg-background">

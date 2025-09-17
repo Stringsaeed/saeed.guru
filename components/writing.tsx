@@ -3,12 +3,6 @@ import { Post } from 'contentlayer/generated';
 import { compareDesc, format } from 'date-fns';
 import Link from 'next/link';
 
-interface WritingItem {
-  title: string;
-  description: string;
-  link: string;
-}
-
 export default function Writing() {
   const posts = allPosts
     .filter((post: Post) => post.published !== false)
