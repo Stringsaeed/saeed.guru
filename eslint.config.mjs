@@ -3,7 +3,21 @@ import perfectionist from 'eslint-plugin-perfectionist';
 import tailwindPlugin from 'eslint-plugin-tailwindcss';
 import * as tseslint from 'typescript-eslint';
 
+const compat = new FlatCompat({
+  baseDirectory: __dirname,
+});
+
+const __dirname = dirname(__filename);
+const __filename = fileURLToPath(import.meta.url);
+import { FlatCompat } from '@eslint/eslintrc';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
 export default [
+  ...compat.extends('next/core-web-vitals', 'next/typescript'),
+  {
+    ignores: ['node_modules/**', '.next/**', 'out/**', 'build/**', 'next-env.d.ts'],
+  },
   {
     files: ['**/*.{js,jsx,mjs,cjs,ts,tsx}'],
     plugins: {
@@ -36,7 +50,6 @@ export default [
       'tailwindcss/classnames-order': 'warn',
     },
   },
-
   {
     plugins: {
       perfectionist,

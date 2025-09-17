@@ -1,4 +1,5 @@
-import { EmbeddedTweet, Tweet } from 'react-tweet';
+import { Tweet } from 'react-tweet';
+import { Mermaid } from 'mdx-mermaid/lib/Mermaid';
 
 import { MDXComponents } from 'mdx/types';
 import Image from 'next/image';
@@ -95,6 +96,8 @@ export const components: MDXComponents = {
     />
   ),
   Tweet: ({ id, ...props }: any) => <Tweet id={id} {...props} />,
+  mermaid: Mermaid,
+  Mermaid,
 };
 
 export default components;
