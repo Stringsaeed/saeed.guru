@@ -31,3 +31,5 @@ next-env.d.ts
 
 .contentlayer
 .env
+
+node_modules

@@ -1,10 +1,12 @@
+'use client';
 import { ComponentProps } from 'react';
 import { Tweet } from 'react-tweet';
 
 import { Mermaid } from 'mdx-mermaid/lib/Mermaid';
-import { MDXComponents } from 'mdx/types';
+import type { MDXComponents } from 'mdx/types';
 import Image, { ImageProps } from 'next/image';
 import Link from 'next/link';
+import { BeforeAfter } from '@/components/before-after';
 
 export const components: MDXComponents = {
   h1: ({ className, ...props }) => (
@@ -56,10 +58,11 @@ export const components: MDXComponents = {
       {...props}
     />
   ),
-  img: ({ className, alt, ...props }: ComponentProps<'img'>) => (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img className={`rounded-md border border-border ${className}`} alt={alt} {...props} />
-  ),
+  img: ({ className, ...props }: ImageProps) => {
+    return (
+      <Image className={`h-28 w-28 rounded-md border border-border ${className}`} {...props} />
+    );
+  },
   hr: ({ ...props }) => <hr className="my-8 border-border" {...props} />,
   table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
     <div className="my-6 w-full overflow-y-auto">
@@ -86,19 +89,36 @@ export const components: MDXComponents = {
       />
     );
   },
-  Image: ({ className, alt, width, height, ...props }: ImageProps) => (
-    <Image
-      className={`h-28 w-28 rounded-md border border-border ${className}`}
-      alt={alt}
-      fill={false}
-      width={width ?? 100}
-      height={height ?? 100}
-      {...props}
+  Image,
+  Tweet: (props: ComponentProps<typeof Tweet>) => <Tweet {...props} />,
+  mermaid: (props) => {
+    const { value } = props || {};
+    if (!value) return null;
+    return <Mermaid chart={value} />;
+  },
+  CustomBeforeAfter: ({
+    beforeSrc,
+    afterSrc,
+    beforeCaption,
+    afterCaption,
+    beforeLabel,
+    afterLabel,
+    beforeSubLabel,
+    afterSubLabel,
+  }) => (
+    <BeforeAfter
+      before={{
+        src: beforeSrc,
+        caption: beforeCaption,
+        label: beforeLabel,
+        subLabel: beforeSubLabel,
+      }}
+      after={{
+        src: afterSrc,
+        caption: afterCaption,
+        label: afterLabel,
+        subLabel: afterSubLabel,
+      }}
     />
   ),
-  Tweet: (props: ComponentProps<typeof Tweet>) => <Tweet {...props} />,
-  mermaid: Mermaid,
-  Mermaid,
 };
-
-export default components;

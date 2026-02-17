@@ -1,4 +1,4 @@
-import { withContentlayer } from 'next-contentlayer';
+import { createContentlayerPlugin } from 'next-contentlayer';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -12,12 +12,17 @@ const nextConfig = {
     unoptimized: true,
   },
   experimental: {
-    webpackBuildWorker: true,
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
   reactStrictMode: true,
-  transpilePackages: ['react-tweet', 'next-mdx-remote'],
+  transpilePackages: ['react-tweet'],
+  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+  swcMinify: true,
 };
+
+const withContentlayer = createContentlayerPlugin({
+  configPath: 'contentlayer.config.ts',
+});
 
 export default withContentlayer(nextConfig);

@@ -82,5 +82,3 @@ export default function WorkExperience() {
     </section>
   );
 }
-
-export { WorkItem };

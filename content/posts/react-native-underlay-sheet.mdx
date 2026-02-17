@@ -15,31 +15,8 @@ So I decided to recreate it in React Native using react-native-reanimated, react
 
 The goal of this demo was to utilize actual components to ensure it can be easily adapted for real-world applications.
 
-<div className="flex flex-col gap-8">
-  <div className="flex gap-4">
-    <div className="flex-1">
-      <div className="mt-2">
-        <h4 className="mb-2 font-bold">iOS</h4>
-      </div>
-      <div className="max-w-[400px]">
-        <video className="rounded-lg" controls={false} autoPlay muted width="100%">
-          <source src="/assets/underlay-ios.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
-    </div>
-    <div className="flex-1">
-      <div className="mt-2">
-        <h4 className="mb-2 font-bold">Android</h4>
-      </div>
-      <div className="max-w-[400px]">
-        <video className="rounded-lg" controls={false} autoPlay muted width="100%">
-          <source src="/assets/underlay-android.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
-    </div>
-  </div>
-</div>
+| iOS                                                                                                                                                                                       | Android                                                                                                                                                                                       |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <video className="rounded-lg" controls={false} autoPlay muted width="100%"><source src="/assets/underlay-ios.mp4" type="video/mp4" />Your browser does not support the video tag.</video> | <video className="rounded-lg" controls={false} autoPlay muted width="100%"><source src="/assets/underlay-android.mp4" type="video/mp4" />Your browser does not support the video tag.</video> |
 
 You can find the full example here: [Stringsaeed/underlay-pattern](https://github.com/Stringsaaed/underlay-pattern)

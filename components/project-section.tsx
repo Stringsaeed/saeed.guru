@@ -81,5 +81,3 @@ export default function ProjectSection() {
     </section>
   );
 }
-
-export { ProjectItem, type Project };

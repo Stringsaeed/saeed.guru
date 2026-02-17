@@ -20,7 +20,7 @@ export default function Writing() {
         <h2 className="text-lg font-bold text-foreground">Writings</h2>
       </div>
       <ul className="space-y-4">
-        {[...posts].map((item) => (
+        {posts.map((item) => (
           <li key={item.title}>
             <Link
               href={item.link}
