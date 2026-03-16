@@ -6,7 +6,7 @@ import readingTime from 'reading-time';
 
 const POSTS_DIR = path.join(process.cwd(), 'content', 'posts');
 
-export interface Post {
+interface Post {
   title: string;
   date: string;
   description: string;
@@ -19,7 +19,7 @@ export interface Post {
   formattedDate: string;
 }
 
-export interface PostWithContent extends Post {
+interface PostWithContent extends Post {
   content: string;
 }
 
