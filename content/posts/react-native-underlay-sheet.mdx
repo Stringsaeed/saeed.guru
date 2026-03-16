@@ -15,8 +15,21 @@ So I decided to recreate it in React Native using react-native-reanimated, react
 
 The goal of this demo was to utilize actual components to ensure it can be easily adapted for real-world applications.
 
-| iOS                                                                                                                                                                                       | Android                                                                                                                                                                                       |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <video className="rounded-lg" controls={false} autoPlay muted width="100%"><source src="/assets/underlay-ios.mp4" type="video/mp4" />Your browser does not support the video tag.</video> | <video className="rounded-lg" controls={false} autoPlay muted width="100%"><source src="/assets/underlay-android.mp4" type="video/mp4" />Your browser does not support the video tag.</video> |
+<div className="my-6 grid grid-cols-2 gap-4">
+  <div>
+    <h4 className="mb-2 text-center text-sm font-medium">iOS</h4>
+    <video className="rounded-lg" controls={false} autoPlay muted loop playsInline width="100%">
+      <source src="/assets/underlay-ios.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  <div>
+    <h4 className="mb-2 text-center text-sm font-medium">Android</h4>
+    <video className="rounded-lg" controls={false} autoPlay muted loop playsInline width="100%">
+      <source src="/assets/underlay-android.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</div>
 
 You can find the full example here: [Stringsaeed/underlay-pattern](https://github.com/Stringsaaed/underlay-pattern)
