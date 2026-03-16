@@ -60,9 +60,7 @@ export default function Home() {
 
           {latestPost && (
             <div className="border-t border-border pt-8">
-              <p className="mb-1 text-xs uppercase tracking-widest text-muted-foreground/50">
-                Latest
-              </p>
+              <p className="mb-1 text-xs uppercase tracking-widest text-muted-foreground">Latest</p>
               <Link
                 href={latestPost.url}
                 className="group inline-flex items-center gap-2 text-foreground transition-colors hover:text-primary"
@@ -70,13 +68,16 @@ export default function Home() {
                 <span className="font-medium">{latestPost.title}</span>
                 <ArrowRight className="h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100" />
               </Link>
-              <p className="mt-1 text-sm text-muted-foreground/60">
+              <p className="mt-1 text-sm text-muted-foreground">
                 {format(new Date(latestPost.date), 'MMMM yyyy')}
               </p>
             </div>
           )}
 
-          <nav className="flex items-center gap-5 pt-4 text-muted-foreground">
+          <nav
+            aria-label="Social links"
+            className="flex items-center gap-5 pt-4 text-muted-foreground"
+          >
             <a
               href="mailto:stringsaeed@gmail.com"
               className="transition-colors hover:text-foreground"

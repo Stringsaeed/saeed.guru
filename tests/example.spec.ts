@@ -8,7 +8,7 @@ test.describe('Homepage', () => {
 
   test('renders nav with site name', async ({ page }) => {
     await page.goto('/');
-    await expect(page.getByRole('heading', { name: 'Saeed', level: 1 })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Saeed' })).toBeVisible();
   });
 
   test('navigates to blog page', async ({ page }) => {

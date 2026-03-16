@@ -1,6 +1,25 @@
+import type { Metadata } from 'next';
+
 import Link from 'next/link';
 
 import { getAllPosts } from '@/lib/posts';
+
+export const metadata: Metadata = {
+  title: 'Blog',
+  description: 'Thoughts, ideas, and learnings about software development by Muhammed Saeed.',
+  alternates: { canonical: 'https://saeed.guru/blog' },
+  openGraph: {
+    title: 'Blog',
+    description: 'Thoughts, ideas, and learnings about software development by Muhammed Saeed.',
+    url: 'https://saeed.guru/blog',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Blog | Muhammed Saeed',
+    description: 'Thoughts, ideas, and learnings about software development by Muhammed Saeed.',
+  },
+};
 
 export default function BlogPage() {
   const posts = getAllPosts();

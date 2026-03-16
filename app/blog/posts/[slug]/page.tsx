@@ -20,7 +20,28 @@ export const generateMetadata = async ({ params }: PageProps<'/blog/posts/[slug]
     throw new Error(`Post not found for slug: ${slug}`);
   }
 
-  return { title: post.title, description: post.description, keywords: post.tags };
+  const url = `https://saeed.guru/blog/posts/${slug}`;
+
+  return {
+    title: post.title,
+    description: post.description,
+    keywords: post.tags,
+    alternates: { canonical: url },
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      url,
+      type: 'article',
+      publishedTime: new Date(post.date).toISOString(),
+      authors: ['Muhammed Saeed'],
+      tags: post.tags,
+    },
+    twitter: {
+      card: 'summary',
+      title: post.title,
+      description: post.description,
+    },
+  };
 };
 
 export default async function PostPage({ params }: PageProps<'/blog/posts/[slug]'>) {
@@ -46,8 +67,9 @@ export default async function PostPage({ params }: PageProps<'/blog/posts/[slug]
               src={post.cover}
               alt={post.title}
               className="h-auto w-full object-cover"
-              width={1000}
-              height={1000}
+              width={1200}
+              height={630}
+              sizes="(max-width: 672px) 100vw, 672px"
               priority
             />
           </div>

@@ -15,10 +15,14 @@ import './globals.css';
 const sans = Funnel_Sans({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://saeed.guru'),
   icons: {
     icon: '/favicon.ico',
   },
-  title: 'Muhammed Saeed | React Native Engineer',
+  title: {
+    default: 'Muhammed Saeed | React Native Engineer',
+    template: '%s | Muhammed Saeed',
+  },
   description:
     'Portfolio of Muhammed Saeed, React Native Engineer with 7+ years of experience in mobile development, UI/UX, and AI-driven applications.',
   keywords: ['react-native', 'react-native-engineer', 'react-native-developer'],
@@ -27,6 +31,25 @@ export const metadata: Metadata = {
   generator: 'Next.js',
   referrer: 'origin',
   applicationName: 'Muhammed Saeed',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://saeed.guru',
+    siteName: 'Muhammed Saeed',
+    title: 'Muhammed Saeed | React Native Engineer',
+    description:
+      'React Native Engineer with 7+ years of experience in mobile development, UI/UX, and AI-driven applications.',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Muhammed Saeed | React Native Engineer',
+    description:
+      'React Native Engineer with 7+ years of experience in mobile development, UI/UX, and AI-driven applications.',
+    creator: '@stringsaeed',
+  },
+  alternates: {
+    canonical: 'https://saeed.guru',
+  },
   other: {
     'p:domain_verify': '562214e39cd3971a2a538633d1ca0e40',
   },
@@ -49,18 +72,27 @@ export default async function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={sans.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <nav className="mx-auto flex max-w-2xl items-center gap-3 px-6 pt-32">
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
+          >
+            Skip to main content
+          </a>
+          <nav
+            aria-label="Site navigation"
+            className="mx-auto flex max-w-2xl items-center gap-3 px-6 pt-32"
+          >
             <BackButton />
-            <Link href="/">
+            <Link href="/" aria-label="Home">
               <DisableMenu className="h-10 w-10 overflow-hidden rounded-full border border-border bg-background">
                 <AnimatedAvatar />
               </DisableMenu>
             </Link>
             <Link href="/">
-              <h1 className="text-3xl font-bold text-foreground">Saeed</h1>
+              <span className="text-3xl font-bold text-foreground">Saeed</span>
             </Link>
           </nav>
-          {children}
+          <main id="main-content">{children}</main>
           <Analytics />
         </ThemeProvider>
       </body>

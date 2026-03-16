@@ -1,14 +1,36 @@
-import SocialLinks from '@/components/social-links';
-import { Button } from '@/components/ui/button';
+import type { Metadata } from 'next';
+
 import Image from 'next/image';
 import Link from 'next/link';
+
+import SocialLinks from '@/components/social-links';
+import { Button } from '@/components/ui/button';
+
+export const metadata: Metadata = {
+  title: 'Husn el Muslim',
+  description:
+    'Your daily fortress of authentic Islamic supplications in your pocket. Download the Husn el Muslim app for iOS.',
+  keywords: ['husn el muslim', 'adhkar', 'islamic app', 'supplications', 'ios app'],
+  openGraph: {
+    title: 'Husn el Muslim',
+    description: 'Your daily fortress of authentic Islamic supplications in your pocket.',
+    url: 'https://saeed.guru/husn-el-muslim',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Husn el Muslim',
+    description: 'Your daily fortress of authentic Islamic supplications in your pocket.',
+  },
+  alternates: { canonical: 'https://saeed.guru/husn-el-muslim' },
+};
 
 const screenshots = ['/assets/husn1.png', '/assets/husn2.png', '/assets/husn3.png'];
 
 export default function HusnElMuslimLanding() {
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
-      <main className="mx-auto flex w-full max-w-2xl flex-1 flex-col items-center px-6 py-16">
+      <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col items-center px-6 py-16">
         {/* Hero Section */}
         <div className="mb-12 text-center">
           <div className="mb-4 flex justify-center">
@@ -82,7 +104,7 @@ export default function HusnElMuslimLanding() {
             ))}
           </div>
         </section>
-      </main>
+      </div>
       <footer className="flex w-full flex-col items-center border-t bg-background py-8">
         <SocialLinks />
         <p className="mt-4 text-xs text-muted-foreground">Built by Muhammed Saeed</p>

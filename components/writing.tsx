@@ -25,7 +25,7 @@ export default function Writing() {
               target={item.link.includes('read.cv') ? '_blank' : '_self'}
               rel="noopener noreferrer"
             >
-              <p className="text-xs text-muted-foreground/70">
+              <p className="text-xs text-muted-foreground">
                 {format(new Date(item.date), 'MMMM d, yyyy')}
               </p>
               <span className="text-base font-semibold text-foreground transition-colors hover:text-primary">
