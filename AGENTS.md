@@ -15,8 +15,26 @@ Package manager: **pnpm** (v10.29.3, defined via `packageManager` field).
 | `pnpm lint`         | Run ESLint (`eslint .`)          |
 | `pnpm format`       | Format all files with Prettier   |
 | `pnpm format:check` | Check formatting without writing |
+| `pnpm test`         | Run all Playwright E2E tests     |
+| `pnpm test:ui`      | Run Playwright tests with UI     |
 
-No test framework is configured. There are no test files or test commands.
+### Running Tests
+
+E2E tests use **Playwright** (`@playwright/test`). Tests live in `tests/`.
+
+```sh
+pnpm test                              # Run all tests (all browsers)
+pnpm test tests/example.spec.ts        # Run a single test file
+pnpm test -- --grep "has correct title" # Run tests matching a name
+pnpm test -- --project=chromium        # Run in one browser only
+pnpm test:ui                           # Interactive UI mode
+```
+
+The `webServer` config in `playwright.config.ts` auto-builds and starts the
+Next.js server before tests, so no manual server start is needed.
+
+`seed.spec.ts` in the project root is a template for the OpenCode test generator
+agent -- it is intentionally outside `testDir` and not run by default.
 
 ## Project Structure
 
