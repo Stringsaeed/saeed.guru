@@ -1,5 +1,3 @@
-import { createContentlayerPlugin } from 'next-contentlayer';
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: {
@@ -16,8 +14,4 @@ const nextConfig = {
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
 };
 
-const withContentlayer = createContentlayerPlugin({
-  configPath: 'contentlayer.config.ts',
-});
-
-export default withContentlayer(nextConfig);
+export default nextConfig;

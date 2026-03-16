@@ -1,17 +1,21 @@
-import { notFound } from 'next/navigation';
+import { MDXRemote } from 'next-mdx-remote/rsc';
 
-import { allPosts } from 'contentlayer/generated';
-import { PostClientPage } from './client-page';
+import Image from 'next/image';
+import { notFound } from 'next/navigation';
+import rehypePrettyCode from 'rehype-pretty-code';
+
+import { components } from '@/components/mdx-components';
+import { getAllPosts, getPostBySlug } from '@/lib/posts';
 
 export async function generateStaticParams() {
-  return allPosts.map((post) => ({
-    slug: post._raw.flattenedPath,
+  return getAllPosts().map((post) => ({
+    slug: post.slug,
   }));
 }
 
 export const generateMetadata = async ({ params }: PageProps<'/blog/posts/[slug]'>) => {
   const { slug } = await params;
-  const post = allPosts.find((post) => post._raw.flattenedPath.includes(slug));
+  const post = getPostBySlug(slug);
   if (!post) {
     throw new Error(`Post not found for slug: ${slug}`);
   }
@@ -21,11 +25,56 @@ export const generateMetadata = async ({ params }: PageProps<'/blog/posts/[slug]
 
 export default async function PostPage({ params }: PageProps<'/blog/posts/[slug]'>) {
   const { slug } = await params;
-  const post = allPosts.find((post) => post._raw.flattenedPath.includes(slug));
+  const post = getPostBySlug(slug);
 
   if (!post) {
     return notFound();
   }
 
-  return <PostClientPage post={post} />;
+  return (
+    <>
+      <header className="mb-8">
+        <h1 className="mb-4 text-3xl font-bold">{post.title}</h1>
+        <div className="mb-6 flex items-center gap-4 text-sm text-muted-foreground">
+          <time dateTime={post.date}>{post.formattedDate}</time>
+          <span>•</span>
+          <span>{post.readingTime}</span>
+        </div>
+        {!!post.cover && (
+          <div className="mb-10 overflow-hidden rounded-lg border border-border">
+            <Image
+              src={post.cover}
+              alt={post.title}
+              className="h-auto w-full object-cover"
+              width={1000}
+              height={1000}
+              priority
+            />
+          </div>
+        )}
+      </header>
+
+      <article className="prose">
+        <MDXRemote
+          source={post.content}
+          components={components}
+          options={{
+            mdxOptions: {
+              rehypePlugins: [
+                [
+                  rehypePrettyCode,
+                  {
+                    theme: {
+                      light: 'github-light',
+                      dark: 'github-dark',
+                    },
+                  },
+                ],
+              ],
+            },
+          }}
+        />
+      </article>
+    </>
+  );
 }

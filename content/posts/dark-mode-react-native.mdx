@@ -18,29 +18,25 @@ While working on integrating a dark theme feature, a key challenge emerged. When
 To establish a robust theming system, the journey begins with creating a React context dedicated to managing the theme. This context facilitates theme sharing across all components within the application. Here's how you can create this context:
 
 ```tsx title="Creating a Theme Context"
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext } from 'react';
 
 // Create a Context for the theme
-const ThemeContext = createContext<
-  { theme: string; toggleTheme: () => void } | undefined
->(undefined);
+const ThemeContext = createContext<{ theme: string; toggleTheme: () => void } | undefined>(
+  undefined
+);
 
 // Create a custom hook to use the ThemeContext
 export const useTheme = () => useContext(ThemeContext);
 
 // Create a ThemeProvider component
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [theme, setTheme] = useState("light"); // Default to light theme
+  const [theme, setTheme] = useState('light'); // Default to light theme
 
   const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
   };
 
-  return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      {children}
-    </ThemeContext.Provider>
-  );
+  return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>;
 };
 ```
 
@@ -49,30 +45,30 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 To ensure the user's chosen theme persists across app sessions, implementing storage mechanisms is vital. This step involves updating the `onUserChangeTheme` function to handle theme persistence efficiently. For example, using AsyncStorage:
 
 ```tsx {2, 15-32} /AsyncStorage/
-import React, { createContext, useState, useContext, useEffect } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import React, { createContext, useState, useContext, useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Create a Context for the theme
-const ThemeContext = createContext<
-  { theme: string; toggleTheme: () => void } | undefined
->(undefined);
+const ThemeContext = createContext<{ theme: string; toggleTheme: () => void } | undefined>(
+  undefined
+);
 
 // Create a custom hook to use the ThemeContext
 export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [theme, setTheme] = useState("light"); // Default to light theme
+  const [theme, setTheme] = useState('light'); // Default to light theme
 
   const toggleTheme = async () => {
-    const newTheme = theme === "light" ? "dark" : "light";
+    const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
-    await AsyncStorage.setItem("user-theme", newTheme);
+    await AsyncStorage.setItem('user-theme', newTheme);
   };
 
   // Inside your ThemeProvider component
   useEffect(() => {
     const loadTheme = async () => {
-      const storedTheme = await AsyncStorage.getItem("user-theme");
+      const storedTheme = await AsyncStorage.getItem('user-theme');
       if (storedTheme) {
         setTheme(storedTheme);
       }
@@ -80,11 +76,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     loadTheme();
   }, []);
 
-  return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      {children}
-    </ThemeContext.Provider>
-  );
+  return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>;
 };
 ```
 
@@ -93,47 +85,43 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 Incorporating the [Appearance API](https://reactnative.dev/docs/appearance) from React Native allows us to explicitly inform native components about the user's color scheme preferences. This step is crucial to ensure a consistent and controlled theme experience.
 
 ```tsx {2, 15-32}
-import React, { createContext, useState, useContext, useEffect } from "react";
+import React, { createContext, useState, useContext, useEffect } from 'react';
 // highlight-start
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Appearance } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Appearance } from 'react-native';
 
 // Create a Context for the theme
-const ThemeContext = createContext<
-  { theme: string; toggleTheme: () => void } | undefined
->(undefined);
+const ThemeContext = createContext<{ theme: string; toggleTheme: () => void } | undefined>(
+  undefined
+);
 
 // Create a custom hook to use the ThemeContext
 export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [theme, setTheme] = useState("light"); // Default to light theme
+  const [theme, setTheme] = useState('light'); // Default to light theme
 
   const toggleTheme = async () => {
-    const newTheme = theme === "light" ? "dark" : "light";
+    const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
-    await AsyncStorage.setItem("user-theme", newTheme);
+    await AsyncStorage.setItem('user-theme', newTheme);
   };
 
   // Inside your ThemeProvider component
   useEffect(() => {
     const loadTheme = async () => {
-      const storedTheme = await AsyncStorage.getItem("user-theme");
+      const storedTheme = await AsyncStorage.getItem('user-theme');
       if (storedTheme) {
         setTheme(storedTheme);
       } else {
         const systemTheme = Appearance.getColorScheme();
-        setTheme(systemTheme || "light");
+        setTheme(systemTheme || 'light');
       }
     };
     loadTheme();
   }, []);
 
-  return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      {children}
-    </ThemeContext.Provider>
-  );
+  return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>;
 };
 ```
 

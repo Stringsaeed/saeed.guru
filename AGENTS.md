@@ -1,7 +1,7 @@
 # AGENTS.md
 
 This is a Next.js 15 (App Router) personal portfolio and blog site built with TypeScript,
-React 19, Tailwind CSS, shadcn/ui, and Contentlayer (MDX). Deployed on Vercel.
+React 19, Tailwind CSS, shadcn/ui, and MDX (via next-mdx-remote). Deployed on Vercel.
 
 ## Build & Development Commands
 
@@ -45,7 +45,8 @@ app/                    # Next.js App Router pages and layouts
 components/             # React components
   ui/                   # shadcn/ui base components (Button, etc.)
   mdx-components.tsx    # MDX component overrides for blog posts
-content/posts/          # MDX blog post files (Contentlayer source)
+content/posts/          # MDX blog post files
+lib/posts.ts            # Post loading utilities (getAllPosts, getPostBySlug)
 lib/utils.ts            # Utility functions (cn() helper)
 public/                 # Static assets (images, icons, manifest)
 ```
@@ -58,8 +59,10 @@ public/                 # Static assets (images, icons, manifest)
 - **Prettier:** Single quotes, semicolons, 2-space indent, 100 char width,
   ES5 trailing commas, Tailwind class sorting plugin.
 - **Tailwind:** v3, dark mode via `class` strategy, HSL CSS variable theming.
-- **Contentlayer:** `Post` document type with fields: title, date, description,
-  cover, published, tags. Computed fields: url, slug, readingTime, formattedDate.
+- **Content (MDX):** Uses `next-mdx-remote/rsc` for server-side MDX rendering and
+  `gray-matter` for frontmatter parsing. Post utilities in `lib/posts.ts` provide
+  `getAllPosts()` and `getPostBySlug()`. Post type fields: title, date, description,
+  cover, published, tags, slug, url, readingTime, formattedDate.
 - **Build tolerance:** `next.config.mjs` ignores ESLint and TypeScript errors during
   build. Still fix all errors -- this is a safety net, not an excuse.
 
@@ -115,7 +118,7 @@ Named imports within each group are sorted alphabetically (ascending, natural).
 - **Server Components by default.** Only add `'use client'` when the component
   needs interactivity (event handlers, hooks, browser APIs).
 - Keep client boundaries as small as possible. Isolate client code to leaf
-  components (e.g., `client-page.tsx` for MDX rendering, `back-button.tsx`).
+  components (e.g., `back-button.tsx`).
 - Pages and layouts use `export default function`.
 - Reusable components may use named or default exports; be consistent with
   neighboring files.
@@ -146,7 +149,7 @@ Named imports within each group are sorted alphabetically (ascending, natural).
 - Only published posts appear in listings. Filter with `post.published`.
 - MDX overrides are in `components/mdx-components.tsx`. Custom components
   available in MDX: `Image`, `Tweet`, `mermaid`, `CustomBeforeAfter`.
-- Query posts via `allPosts` from `contentlayer/generated`.
+- Query posts via `getAllPosts()` and `getPostBySlug()` from `@/lib/posts`.
 
 ### Icons
 

@@ -1,18 +1,15 @@
-import { allPosts } from 'contentlayer/generated';
-import { Post } from 'contentlayer/generated';
-import { compareDesc, format } from 'date-fns';
+import { format } from 'date-fns';
 import Link from 'next/link';
 
+import { getAllPosts } from '@/lib/posts';
+
 export default function Writing() {
-  const posts = allPosts
-    .filter((post: Post) => post.published !== false)
-    .sort((a: Post, b: Post) => compareDesc(new Date(a.date), new Date(b.date)))
-    .map((post: Post) => ({
-      title: post.title,
-      description: post.description,
-      link: post.url,
-      date: post.date,
-    }));
+  const posts = getAllPosts().map((post) => ({
+    title: post.title,
+    description: post.description,
+    link: post.url,
+    date: post.date,
+  }));
 
   return (
     <section className="mb-12">

@@ -1,11 +1,9 @@
-import { allPosts, Post } from 'contentlayer/generated';
-import { compareDesc } from 'date-fns';
 import Link from 'next/link';
 
+import { getAllPosts } from '@/lib/posts';
+
 export default function BlogPage() {
-  const posts = allPosts
-    .filter((post: Post) => post.published !== false)
-    .sort((a: Post, b: Post) => compareDesc(new Date(a.date), new Date(b.date)));
+  const posts = getAllPosts();
 
   return (
     <>
@@ -20,7 +18,7 @@ export default function BlogPage() {
         {posts.length === 0 ? (
           <p className="text-muted-foreground">No posts published yet. Check back soon!</p>
         ) : (
-          posts.map((post: Post) => (
+          posts.map((post) => (
             <article key={post.slug} className="border-b border-border pb-10">
               <Link href={post.url} className="group">
                 <h2 className="mb-2 text-2xl font-bold transition-colors group-hover:text-primary">
