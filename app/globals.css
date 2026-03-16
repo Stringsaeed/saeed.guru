@@ -3,49 +3,55 @@
 @tailwind utilities;
 
 @layer base {
+  /* ---------------------------------------------------------------- */
+  /* Light mode — neutral whites/grays + purple accent                */
+  /* ---------------------------------------------------------------- */
   :root {
-    --background: 0 0% 98%;
-    --foreground: 164 86% 10%;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 9%;
     --card: 0 0% 100%;
-    --card-foreground: 164 86% 10%;
+    --card-foreground: 0 0% 9%;
     --popover: 0 0% 100%;
-    --popover-foreground: 164 86% 10%;
-    --primary: 164 86% 25%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 164 13% 94%;
-    --secondary-foreground: 164 77% 20%;
-    --muted: 164 9% 92%;
-    --muted-foreground: 164 34% 40%;
-    --accent: 164 26% 90%;
-    --accent-foreground: 164 77% 20%;
+    --popover-foreground: 0 0% 9%;
+    --primary: 270 60% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 94%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 270 20% 94%;
+    --accent-foreground: 270 50% 30%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 164 9% 88%;
-    --input: 164 9% 88%;
-    --ring: 164 86% 40%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 270 60% 55%;
     --radius: 0.5rem;
   }
 
+  /* ---------------------------------------------------------------- */
+  /* Dark mode — near-black + purple accent                           */
+  /* ---------------------------------------------------------------- */
   .dark {
-    --background: 164 43% 8%;
+    --background: 0 0% 4%;
     --foreground: 0 0% 98%;
-    --card: 164 43% 8%;
+    --card: 0 0% 6%;
     --card-foreground: 0 0% 98%;
-    --popover: 164 43% 8%;
+    --popover: 0 0% 6%;
     --popover-foreground: 0 0% 98%;
-    --primary: 164 77% 45%;
+    --primary: 270 70% 65%;
     --primary-foreground: 0 0% 98%;
-    --secondary: 164 26% 16%;
+    --secondary: 0 0% 12%;
     --secondary-foreground: 0 0% 98%;
-    --muted: 164 22% 18%;
-    --muted-foreground: 164 17% 70%;
-    --accent: 164 34% 20%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 64%;
+    --accent: 270 30% 18%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 63% 40%;
     --destructive-foreground: 0 0% 98%;
-    --border: 164 26% 15%;
-    --input: 164 26% 15%;
-    --ring: 164 86% 35%;
+    --border: 0 0% 16%;
+    --input: 0 0% 16%;
+    --ring: 270 70% 60%;
   }
 }
 
@@ -67,8 +73,10 @@
   }
 }
 
+/* ------------------------------------------------------------------ */
+/* rehype-pretty-code: dual theme color switching                      */
+/* ------------------------------------------------------------------ */
 @layer base {
-  /* rehype-pretty-code: dual theme color switching */
   code[data-theme*=' '],
   code[data-theme*=' '] span {
     color: var(--shiki-light);

@@ -1,13 +1,14 @@
 import type { Metadata, Viewport } from 'next';
 import type React from 'react';
 
-import BackButton from '@/components/back-button';
-import DisableMenu from '@/components/disable-menu';
-import { ThemeProvider } from '@/components/theme-provider';
 import { Analytics } from '@vercel/analytics/react';
 import { Funnel_Sans } from 'next/font/google';
 import Image from 'next/image';
 import Link from 'next/link';
+
+import BackButton from '@/components/back-button';
+import DisableMenu from '@/components/disable-menu';
+import { ThemeProvider } from '@/components/theme-provider';
 
 import './globals.css';
 
@@ -33,8 +34,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: dark)', color: '#0C1D18' },
-    { media: '(prefers-color-scheme: light)', color: '#FAFAFA' },
+    { media: '(prefers-color-scheme: dark)', color: '#0A0A0A' },
+    { media: '(prefers-color-scheme: light)', color: '#FFFFFF' },
   ],
   colorScheme: 'dark',
 };

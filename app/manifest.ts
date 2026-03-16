@@ -7,8 +7,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: 'Muhammed Saeed - React native engineer',
     start_url: '/',
     display: 'standalone',
-    background_color: '#0C1D18',
-    theme_color: '#0C1D18',
+    background_color: '#0A0A0A',
+    theme_color: '#0A0A0A',
     icons: [
       {
         src: '/favicon.ico',
