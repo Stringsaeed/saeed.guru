@@ -3,9 +3,9 @@ import type React from 'react';
 
 import { Analytics } from '@vercel/analytics/react';
 import { Funnel_Sans } from 'next/font/google';
-import Image from 'next/image';
 import Link from 'next/link';
 
+import AnimatedAvatar from '@/components/animated-avatar';
 import BackButton from '@/components/back-button';
 import DisableMenu from '@/components/disable-menu';
 import { ThemeProvider } from '@/components/theme-provider';
@@ -53,7 +53,7 @@ export default async function RootLayout({
             <BackButton />
             <Link href="/">
               <DisableMenu className="h-10 w-10 overflow-hidden rounded-full border border-border bg-background">
-                <Image src="/static/color.svg" alt="Saeed picture" width={40} height={40} />
+                <AnimatedAvatar />
               </DisableMenu>
             </Link>
             <Link href="/">
