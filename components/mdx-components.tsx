@@ -67,9 +67,13 @@ export const components: MDXComponents = {
       {...props}
     />
   ),
-  img: ({ className, ...props }: ImageProps) => {
+  img: ({ className, alt, ...props }: ImageProps) => {
     return (
-      <Image className={cn('h-28 w-28 rounded-md border border-border', className)} {...props} />
+      <Image
+        className={cn('h-28 w-28 rounded-md border border-border', className)}
+        alt={alt}
+        {...props}
+      />
     );
   },
   hr: ({ ...props }) => <hr className="my-8 border-border" {...props} />,

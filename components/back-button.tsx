@@ -1,8 +1,9 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
 import { ArrowLeftIcon } from 'lucide-react';
 import { usePathname, useRouter } from 'next/navigation';
+
+import { Button } from '@/components/ui/button';
 
 export default function BackButton() {
   const router = useRouter();
