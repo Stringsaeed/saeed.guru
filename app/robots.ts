@@ -1,11 +1,13 @@
 import type { MetadataRoute } from 'next';
 
+import { getAbsoluteUrl } from '@/lib/site-url';
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://saeed.guru/sitemap.xml',
+    sitemap: getAbsoluteUrl('/sitemap.xml'),
   };
 }

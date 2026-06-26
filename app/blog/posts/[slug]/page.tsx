@@ -4,8 +4,11 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import rehypePrettyCode from 'rehype-pretty-code';
 
+import JsonLd from '@/components/json-ld';
 import { components } from '@/components/mdx-components';
 import { getAllPosts, getPostBySlug } from '@/lib/posts';
+import { getAbsoluteUrl } from '@/lib/site-url';
+import { getBlogPostStructuredData } from '@/lib/structured-data';
 
 export async function generateStaticParams() {
   return getAllPosts().map((post) => ({
@@ -20,7 +23,7 @@ export const generateMetadata = async ({ params }: PageProps<'/blog/posts/[slug]
     throw new Error(`Post not found for slug: ${slug}`);
   }
 
-  const url = `https://saeed.guru/blog/posts/${slug}`;
+  const url = getAbsoluteUrl(`/blog/posts/${slug}`);
 
   return {
     title: post.title,
@@ -54,6 +57,7 @@ export default async function PostPage({ params }: PageProps<'/blog/posts/[slug]
 
   return (
     <>
+      <JsonLd data={getBlogPostStructuredData(post)} id="blog-post-structured-data" />
       <header className="mb-8">
         <h1 className="mb-4 text-3xl font-bold">{post.title}</h1>
         <div className="mb-6 flex items-center gap-4 text-sm text-muted-foreground">

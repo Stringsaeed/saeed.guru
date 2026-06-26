@@ -1,12 +1,11 @@
 import type { MDXComponents } from 'mdx/types';
 
-import { Tweet } from 'react-tweet';
-
 import Image, { ImageProps } from 'next/image';
 import Link from 'next/link';
 
 import { BeforeAfter } from '@/components/before-after';
 import MermaidChart from '@/components/mermaid-chart';
+import TweetCard from '@/components/tweet-card';
 import { cn } from '@/lib/utils';
 
 export const components: MDXComponents = {
@@ -128,7 +127,7 @@ export const components: MDXComponents = {
     );
   },
   Image,
-  Tweet,
+  Tweet: TweetCard,
   mermaid: (props) => <MermaidChart value={props?.value} />,
   CustomBeforeAfter: ({
     beforeSrc,

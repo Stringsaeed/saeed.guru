@@ -17,6 +17,7 @@ interface Post {
   url: string;
   readingTime: string;
   formattedDate: string;
+  updated?: string;
 }
 
 interface PostWithContent extends Post {
@@ -36,12 +37,13 @@ function parsePost(fileName: string): PostWithContent {
     date: data.date,
     description: data.description,
     cover: data.cover || undefined,
-    published: data.published !== false,
+    published: data.published === true,
     tags: data.tags,
     slug,
     url: `/blog/posts/${slug}`,
     readingTime: readingTime(content).text,
     formattedDate: format(date, 'MMMM dd, yyyy'),
+    updated: data.updated || undefined,
     content,
   };
 }
@@ -55,7 +57,7 @@ export function getAllPosts(): Post[] {
       const { content: _, ...post } = parsePost(file);
       return post;
     })
-    .filter((post) => post.published !== false)
+    .filter((post) => post.published)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
@@ -65,5 +67,7 @@ export function getPostBySlug(slug: string): PostWithContent | undefined {
 
   if (!fileName) return undefined;
 
-  return parsePost(fileName);
+  const post = parsePost(fileName);
+
+  return post.published ? post : undefined;
 }

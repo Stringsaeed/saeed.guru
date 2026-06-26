@@ -7,8 +7,15 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   reactStrictMode: true,
-  transpilePackages: ['react-tweet'],
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+  async rewrites() {
+    return [
+      {
+        source: '/feed.xml',
+        destination: '/feed',
+      },
+    ];
+  },
   async headers() {
     return [
       {

@@ -5,6 +5,9 @@ import Link from 'next/link';
 
 import SocialLinks from '@/components/social-links';
 import { Button } from '@/components/ui/button';
+import { getAbsoluteUrl } from '@/lib/site-url';
+
+const pageUrl = getAbsoluteUrl('/husn-el-muslim');
 
 export const metadata: Metadata = {
   title: 'Husn el Muslim',
@@ -14,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Husn el Muslim',
     description: 'Your daily fortress of authentic Islamic supplications in your pocket.',
-    url: 'https://saeed.guru/husn-el-muslim',
+    url: pageUrl,
     type: 'website',
   },
   twitter: {
@@ -22,7 +25,7 @@ export const metadata: Metadata = {
     title: 'Husn el Muslim',
     description: 'Your daily fortress of authentic Islamic supplications in your pocket.',
   },
-  alternates: { canonical: 'https://saeed.guru/husn-el-muslim' },
+  alternates: { canonical: pageUrl },
 };
 
 const screenshots = ['/assets/husn1.png', '/assets/husn2.png', '/assets/husn3.png'];

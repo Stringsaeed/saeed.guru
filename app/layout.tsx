@@ -9,13 +9,16 @@ import AnimatedAvatar from '@/components/animated-avatar';
 import BackButton from '@/components/back-button';
 import DisableMenu from '@/components/disable-menu';
 import { ThemeProvider } from '@/components/theme-provider';
+import { getAbsoluteUrl, getSiteUrl } from '@/lib/site-url';
 
 import './globals.css';
 
 const sans = Funnel_Sans({ subsets: ['latin'] });
+const siteUrl = getSiteUrl();
+const feedUrl = getAbsoluteUrl('/feed.xml');
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://saeed.guru'),
+  metadataBase: new URL(siteUrl),
   icons: {
     icon: '/favicon.ico',
   },
@@ -34,7 +37,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://saeed.guru',
+    url: siteUrl,
     siteName: 'Muhammed Saeed',
     title: 'Muhammed Saeed | React Native Engineer',
     description:
@@ -48,7 +51,10 @@ export const metadata: Metadata = {
     creator: '@stringsaeed',
   },
   alternates: {
-    canonical: 'https://saeed.guru',
+    canonical: siteUrl,
+    types: {
+      'application/rss+xml': feedUrl,
+    },
   },
   other: {
     'p:domain_verify': '562214e39cd3971a2a538633d1ca0e40',

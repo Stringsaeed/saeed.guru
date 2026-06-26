@@ -3,15 +3,18 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import { getAllPosts } from '@/lib/posts';
+import { getAbsoluteUrl } from '@/lib/site-url';
+
+const blogUrl = getAbsoluteUrl('/blog');
 
 export const metadata: Metadata = {
   title: 'Blog',
   description: 'Thoughts, ideas, and learnings about software development by Muhammed Saeed.',
-  alternates: { canonical: 'https://saeed.guru/blog' },
+  alternates: { canonical: blogUrl },
   openGraph: {
     title: 'Blog',
     description: 'Thoughts, ideas, and learnings about software development by Muhammed Saeed.',
-    url: 'https://saeed.guru/blog',
+    url: blogUrl,
     type: 'website',
   },
   twitter: {
