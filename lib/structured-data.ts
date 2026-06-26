@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 
-import { getAbsoluteUrl } from '@/lib/site-url';
+import { getAbsoluteUrlForOrigin } from '@/lib/site-url';
 
 interface BlogPostStructuredDataInput {
   cover?: string;
@@ -22,46 +22,46 @@ const sameAs = [
   'https://bsky.app/profile/saeed.guru',
 ];
 
-function getPersonId() {
-  return `${getAbsoluteUrl('/')}#person`;
+function getPersonId(siteOrigin: string) {
+  return `${getAbsoluteUrlForOrigin(siteOrigin, '/')}#person`;
 }
 
-function getWebSiteId() {
-  return `${getAbsoluteUrl('/')}#website`;
+function getWebSiteId(siteOrigin: string) {
+  return `${getAbsoluteUrlForOrigin(siteOrigin, '/')}#website`;
 }
 
-function getPersonStructuredData() {
+function getPersonStructuredData(siteOrigin: string) {
   return {
-    '@id': getPersonId(),
+    '@id': getPersonId(siteOrigin),
     '@type': 'Person',
     description:
       'React Native Engineer specializing in mobile development, UI/UX, and AI-driven applications.',
     jobTitle: 'React Native Engineer',
     name: authorName,
     sameAs,
-    url: getAbsoluteUrl('/'),
+    url: getAbsoluteUrlForOrigin(siteOrigin, '/'),
   };
 }
 
-function getWebSiteStructuredData() {
+function getWebSiteStructuredData(siteOrigin: string) {
   return {
-    '@id': getWebSiteId(),
+    '@id': getWebSiteId(siteOrigin),
     '@type': 'WebSite',
     author: {
-      '@id': getPersonId(),
+      '@id': getPersonId(siteOrigin),
     },
     description: siteDescription,
     inLanguage: 'en-US',
     name: siteName,
     publisher: {
-      '@id': getPersonId(),
+      '@id': getPersonId(siteOrigin),
     },
-    url: getAbsoluteUrl('/'),
+    url: getAbsoluteUrlForOrigin(siteOrigin, '/'),
   };
 }
 
-export function getBlogPostStructuredData(post: BlogPostStructuredDataInput) {
-  const url = getAbsoluteUrl(`/blog/posts/${post.slug}`);
+export function getBlogPostStructuredData(post: BlogPostStructuredDataInput, siteOrigin: string) {
+  const url = getAbsoluteUrlForOrigin(siteOrigin, `/blog/posts/${post.slug}`);
   const publishedDate = format(new Date(post.date), 'yyyy-MM-dd');
 
   return {
@@ -70,19 +70,19 @@ export function getBlogPostStructuredData(post: BlogPostStructuredDataInput) {
     '@type': 'BlogPosting',
     articleSection: post.tags,
     author: {
-      '@id': getPersonId(),
+      '@id': getPersonId(siteOrigin),
       '@type': 'Person',
       name: authorName,
-      url: getAbsoluteUrl('/'),
+      url: getAbsoluteUrlForOrigin(siteOrigin, '/'),
     },
     dateModified: publishedDate,
     datePublished: publishedDate,
     description: post.description,
     headline: post.title,
-    image: post.cover ? getAbsoluteUrl(post.cover) : undefined,
+    image: post.cover ? getAbsoluteUrlForOrigin(siteOrigin, post.cover) : undefined,
     inLanguage: 'en-US',
     isPartOf: {
-      '@id': getWebSiteId(),
+      '@id': getWebSiteId(siteOrigin),
     },
     keywords: post.tags,
     mainEntityOfPage: {
@@ -90,18 +90,18 @@ export function getBlogPostStructuredData(post: BlogPostStructuredDataInput) {
       '@type': 'WebPage',
     },
     publisher: {
-      '@id': getPersonId(),
+      '@id': getPersonId(siteOrigin),
       '@type': 'Person',
       name: authorName,
-      url: getAbsoluteUrl('/'),
+      url: getAbsoluteUrlForOrigin(siteOrigin, '/'),
     },
     url,
   };
 }
 
-export function getRootStructuredData() {
+export function getRootStructuredData(siteOrigin: string) {
   return {
     '@context': 'https://schema.org',
-    '@graph': [getPersonStructuredData(), getWebSiteStructuredData()],
+    '@graph': [getPersonStructuredData(siteOrigin), getWebSiteStructuredData(siteOrigin)],
   };
 }

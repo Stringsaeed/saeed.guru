@@ -1,53 +1,32 @@
 import { expect, test } from '@playwright/test';
 
-import { getAbsoluteUrl, getSiteUrl } from '@/lib/site-url';
-
-const originalSiteUrl = process.env.NEXT_PUBLIC_SITE_URL;
-
-test.describe.configure({ mode: 'serial' });
-
-test.afterEach(() => {
-  if (originalSiteUrl === undefined) {
-    delete process.env.NEXT_PUBLIC_SITE_URL;
-    return;
-  }
-
-  process.env.NEXT_PUBLIC_SITE_URL = originalSiteUrl;
-});
+import { getAbsoluteUrlForOrigin, getSiteOriginFromHeaders } from '@/lib/site-url';
 
 test.describe('site URL helper', () => {
-  test('returns a valid site origin', () => {
-    process.env.NEXT_PUBLIC_SITE_URL = 'https://example.com';
+  test('uses the request host as the site origin', () => {
+    const headers = new Headers({ host: 'app1.com' });
 
-    expect(getSiteUrl()).toBe('https://example.com');
-    expect(getAbsoluteUrl('/blog')).toBe('https://example.com/blog');
+    expect(getSiteOriginFromHeaders(headers)).toBe('https://app1.com');
+    expect(getAbsoluteUrlForOrigin('https://app1.com', '/blog')).toBe('https://app1.com/blog');
   });
 
-  test('normalizes a trailing slash', () => {
-    process.env.NEXT_PUBLIC_SITE_URL = 'https://example.com/';
+  test('prefers forwarded host and protocol headers', () => {
+    const headers = new Headers({
+      host: 'internal.vercel.app',
+      'x-forwarded-host': 'app2.com',
+      'x-forwarded-proto': 'https',
+    });
 
-    expect(getSiteUrl()).toBe('https://example.com');
+    expect(getSiteOriginFromHeaders(headers)).toBe('https://app2.com');
   });
 
-  test('throws when the site URL is missing', () => {
-    delete process.env.NEXT_PUBLIC_SITE_URL;
+  test('uses http for localhost requests', () => {
+    const headers = new Headers({ host: 'localhost:3000' });
 
-    expect(() => getSiteUrl()).toThrow(
-      'NEXT_PUBLIC_SITE_URL must be set to an absolute http(s) origin.'
-    );
+    expect(getSiteOriginFromHeaders(headers)).toBe('http://localhost:3000');
   });
 
-  test('throws when the site URL is invalid', () => {
-    process.env.NEXT_PUBLIC_SITE_URL = 'ftp://example.com';
-
-    expect(() => getSiteUrl()).toThrow('NEXT_PUBLIC_SITE_URL must use the http or https protocol.');
-  });
-
-  test('throws when the site URL includes a path', () => {
-    process.env.NEXT_PUBLIC_SITE_URL = 'https://example.com/blog';
-
-    expect(() => getSiteUrl()).toThrow(
-      'NEXT_PUBLIC_SITE_URL must be an origin only, without a path, query, or hash.'
-    );
+  test('falls back to the primary production domain when host is missing', () => {
+    expect(getSiteOriginFromHeaders(new Headers())).toBe('https://saeed.guru');
   });
 });

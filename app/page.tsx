@@ -5,14 +5,16 @@ import Link from 'next/link';
 
 import JsonLd from '@/components/json-ld';
 import { getAllPosts } from '@/lib/posts';
+import { getSiteOrigin } from '@/lib/site-url';
 import { getRootStructuredData } from '@/lib/structured-data';
 
-export default function Home() {
+export default async function Home() {
   const latestPost = getAllPosts()[0];
+  const siteOrigin = await getSiteOrigin();
 
   return (
     <>
-      <JsonLd data={getRootStructuredData()} id="root-structured-data" />
+      <JsonLd data={getRootStructuredData(siteOrigin)} id="root-structured-data" />
       <div className="flex flex-col justify-center text-foreground">
         <div className="mx-auto max-w-2xl px-6 py-16">
           <article className="space-y-8">

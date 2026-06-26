@@ -9,57 +9,62 @@ import AnimatedAvatar from '@/components/animated-avatar';
 import BackButton from '@/components/back-button';
 import DisableMenu from '@/components/disable-menu';
 import { ThemeProvider } from '@/components/theme-provider';
-import { getAbsoluteUrl, getSiteUrl } from '@/lib/site-url';
+import { getAbsoluteUrl, getSiteOrigin } from '@/lib/site-url';
 
 import './globals.css';
 
 const sans = Funnel_Sans({ subsets: ['latin'] });
-const siteUrl = getSiteUrl();
-const feedUrl = getAbsoluteUrl('/feed.xml');
 
-export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  icons: {
-    icon: '/favicon.ico',
-  },
-  title: {
-    default: 'Muhammed Saeed | React Native Engineer',
-    template: '%s | Muhammed Saeed',
-  },
-  description:
-    'Portfolio of Muhammed Saeed, React Native Engineer with 7+ years of experience in mobile development, UI/UX, and AI-driven applications.',
-  keywords: ['react-native', 'react-native-engineer', 'react-native-developer'],
-  publisher: 'Muhammed Saeed',
-  authors: [{ name: 'Muhammed Saeed' }],
-  generator: 'Next.js',
-  referrer: 'origin',
-  applicationName: 'Muhammed Saeed',
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: siteUrl,
-    siteName: 'Muhammed Saeed',
-    title: 'Muhammed Saeed | React Native Engineer',
-    description:
-      'React Native Engineer with 7+ years of experience in mobile development, UI/UX, and AI-driven applications.',
-  },
-  twitter: {
-    card: 'summary',
-    title: 'Muhammed Saeed | React Native Engineer',
-    description:
-      'React Native Engineer with 7+ years of experience in mobile development, UI/UX, and AI-driven applications.',
-    creator: '@stringsaeed',
-  },
-  alternates: {
-    canonical: siteUrl,
-    types: {
-      'application/rss+xml': feedUrl,
+export const dynamic = 'force-dynamic';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const siteUrl = await getSiteOrigin();
+  const feedUrl = await getAbsoluteUrl('/feed.xml');
+
+  return {
+    metadataBase: new URL(siteUrl),
+    icons: {
+      icon: '/favicon.ico',
     },
-  },
-  other: {
-    'p:domain_verify': '562214e39cd3971a2a538633d1ca0e40',
-  },
-};
+    title: {
+      default: 'Muhammed Saeed | React Native Engineer',
+      template: '%s | Muhammed Saeed',
+    },
+    description:
+      'Portfolio of Muhammed Saeed, React Native Engineer with 7+ years of experience in mobile development, UI/UX, and AI-driven applications.',
+    keywords: ['react-native', 'react-native-engineer', 'react-native-developer'],
+    publisher: 'Muhammed Saeed',
+    authors: [{ name: 'Muhammed Saeed' }],
+    generator: 'Next.js',
+    referrer: 'origin',
+    applicationName: 'Muhammed Saeed',
+    openGraph: {
+      type: 'website',
+      locale: 'en_US',
+      url: siteUrl,
+      siteName: 'Muhammed Saeed',
+      title: 'Muhammed Saeed | React Native Engineer',
+      description:
+        'React Native Engineer with 7+ years of experience in mobile development, UI/UX, and AI-driven applications.',
+    },
+    twitter: {
+      card: 'summary',
+      title: 'Muhammed Saeed | React Native Engineer',
+      description:
+        'React Native Engineer with 7+ years of experience in mobile development, UI/UX, and AI-driven applications.',
+      creator: '@stringsaeed',
+    },
+    alternates: {
+      canonical: siteUrl,
+      types: {
+        'application/rss+xml': feedUrl,
+      },
+    },
+    other: {
+      'p:domain_verify': '562214e39cd3971a2a538633d1ca0e40',
+    },
+  };
+}
 
 export const viewport: Viewport = {
   themeColor: [

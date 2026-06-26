@@ -5,24 +5,26 @@ import Link from 'next/link';
 import { getAllPosts } from '@/lib/posts';
 import { getAbsoluteUrl } from '@/lib/site-url';
 
-const blogUrl = getAbsoluteUrl('/blog');
+export async function generateMetadata(): Promise<Metadata> {
+  const blogUrl = await getAbsoluteUrl('/blog');
 
-export const metadata: Metadata = {
-  title: 'Blog',
-  description: 'Thoughts, ideas, and learnings about software development by Muhammed Saeed.',
-  alternates: { canonical: blogUrl },
-  openGraph: {
+  return {
     title: 'Blog',
     description: 'Thoughts, ideas, and learnings about software development by Muhammed Saeed.',
-    url: blogUrl,
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary',
-    title: 'Blog | Muhammed Saeed',
-    description: 'Thoughts, ideas, and learnings about software development by Muhammed Saeed.',
-  },
-};
+    alternates: { canonical: blogUrl },
+    openGraph: {
+      title: 'Blog',
+      description: 'Thoughts, ideas, and learnings about software development by Muhammed Saeed.',
+      url: blogUrl,
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary',
+      title: 'Blog | Muhammed Saeed',
+      description: 'Thoughts, ideas, and learnings about software development by Muhammed Saeed.',
+    },
+  };
+}
 
 export default function BlogPage() {
   const posts = getAllPosts();

@@ -7,26 +7,28 @@ import SocialLinks from '@/components/social-links';
 import { Button } from '@/components/ui/button';
 import { getAbsoluteUrl } from '@/lib/site-url';
 
-const pageUrl = getAbsoluteUrl('/husn-el-muslim');
+export async function generateMetadata(): Promise<Metadata> {
+  const pageUrl = await getAbsoluteUrl('/husn-el-muslim');
 
-export const metadata: Metadata = {
-  title: 'Husn el Muslim',
-  description:
-    'Your daily fortress of authentic Islamic supplications in your pocket. Download the Husn el Muslim app for iOS.',
-  keywords: ['husn el muslim', 'adhkar', 'islamic app', 'supplications', 'ios app'],
-  openGraph: {
+  return {
     title: 'Husn el Muslim',
-    description: 'Your daily fortress of authentic Islamic supplications in your pocket.',
-    url: pageUrl,
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary',
-    title: 'Husn el Muslim',
-    description: 'Your daily fortress of authentic Islamic supplications in your pocket.',
-  },
-  alternates: { canonical: pageUrl },
-};
+    description:
+      'Your daily fortress of authentic Islamic supplications in your pocket. Download the Husn el Muslim app for iOS.',
+    keywords: ['husn el muslim', 'adhkar', 'islamic app', 'supplications', 'ios app'],
+    openGraph: {
+      title: 'Husn el Muslim',
+      description: 'Your daily fortress of authentic Islamic supplications in your pocket.',
+      url: pageUrl,
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary',
+      title: 'Husn el Muslim',
+      description: 'Your daily fortress of authentic Islamic supplications in your pocket.',
+    },
+    alternates: { canonical: pageUrl },
+  };
+}
 
 const screenshots = ['/assets/husn1.png', '/assets/husn2.png', '/assets/husn3.png'];
 

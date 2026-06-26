@@ -1,35 +1,42 @@
-const SITE_URL_ENV_VAR = 'NEXT_PUBLIC_SITE_URL';
+import { headers } from 'next/headers';
 
-function parseSiteUrl(): URL {
-  const siteUrl = process.env[SITE_URL_ENV_VAR]?.trim();
+const DEFAULT_HOST = 'saeed.guru';
 
-  if (!siteUrl) {
-    throw new Error(`${SITE_URL_ENV_VAR} must be set to an absolute http(s) origin.`);
+function normalizeHost(host: string | null): string {
+  const normalizedHost = host?.trim().split(',')[0]?.trim();
+
+  if (!normalizedHost) {
+    return DEFAULT_HOST;
   }
 
-  let url: URL;
-
-  try {
-    url = new URL(siteUrl);
-  } catch {
-    throw new Error(`${SITE_URL_ENV_VAR} must be a valid absolute URL.`);
-  }
-
-  if (url.protocol !== 'http:' && url.protocol !== 'https:') {
-    throw new Error(`${SITE_URL_ENV_VAR} must use the http or https protocol.`);
-  }
-
-  if (url.pathname !== '/' || url.search || url.hash) {
-    throw new Error(`${SITE_URL_ENV_VAR} must be an origin only, without a path, query, or hash.`);
-  }
-
-  return url;
+  return normalizedHost.replace(/^https?:\/\//, '').replace(/\/.*$/, '');
 }
 
-export function getAbsoluteUrl(path = '/'): string {
-  return new URL(path, getSiteUrl()).toString().replace(/\/$/, '');
+function normalizeProtocol(protocol: string | null, host: string): 'http' | 'https' {
+  const normalizedProtocol = protocol?.trim().split(',')[0]?.replace(':', '');
+
+  if (normalizedProtocol === 'http' || normalizedProtocol === 'https') {
+    return normalizedProtocol;
+  }
+
+  return host.startsWith('localhost') || host.startsWith('127.0.0.1') ? 'http' : 'https';
 }
 
-export function getSiteUrl(): string {
-  return parseSiteUrl().origin;
+export function getAbsoluteUrlForOrigin(origin: string, path = '/'): string {
+  return new URL(path, origin).toString().replace(/\/$/, '');
+}
+
+export function getSiteOriginFromHeaders(headersList: Headers): string {
+  const host = normalizeHost(headersList.get('x-forwarded-host') ?? headersList.get('host'));
+  const protocol = normalizeProtocol(headersList.get('x-forwarded-proto'), host);
+
+  return `${protocol}://${host}`;
+}
+
+export async function getAbsoluteUrl(path = '/'): Promise<string> {
+  return getAbsoluteUrlForOrigin(await getSiteOrigin(), path);
+}
+
+export async function getSiteOrigin(): Promise<string> {
+  return getSiteOriginFromHeaders(await headers());
 }
