@@ -27,7 +27,7 @@ function hasSchemaType(data: JsonLdData, type: string) {
 test.describe('structured data', () => {
   test('renders Person and WebSite JSON-LD on the homepage', async ({ page }) => {
     await page.goto('/');
-    const siteUrl = new URL(page.url()).origin;
+    const siteUrl = 'https://saeed.guru';
 
     const structuredData = await getStructuredData(page);
     const person = structuredData.find((data) => hasSchemaType(data, 'Person'));
@@ -47,7 +47,7 @@ test.describe('structured data', () => {
 
   test('renders BlogPosting JSON-LD on blog posts', async ({ page }) => {
     await page.goto('/blog/posts/dark-mode-react-native');
-    const siteUrl = new URL(page.url()).origin;
+    const siteUrl = 'https://saeed.guru';
 
     const structuredData = await getStructuredData(page);
     const article = structuredData.find((data) => hasSchemaType(data, 'BlogPosting'));

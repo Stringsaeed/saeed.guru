@@ -15,11 +15,9 @@ import './globals.css';
 
 const sans = Funnel_Sans({ subsets: ['latin'] });
 
-export const dynamic = 'force-dynamic';
-
 export async function generateMetadata(): Promise<Metadata> {
-  const siteUrl = await getSiteOrigin();
-  const feedUrl = await getAbsoluteUrl('/feed.xml');
+  const siteUrl = getSiteOrigin();
+  const feedUrl = getAbsoluteUrl('/feed.xml');
 
   return {
     metadataBase: new URL(siteUrl),

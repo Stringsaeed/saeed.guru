@@ -1,42 +1,40 @@
-import { headers } from 'next/headers';
+const SITE_URL_ENV_VAR = 'VERCEL_PROJECT_PRODUCTION_URL';
 
-const DEFAULT_HOST = 'saeed.guru';
+function parseSiteOrigin(): string {
+  const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim();
 
-function normalizeHost(host: string | null): string {
-  const normalizedHost = host?.trim().split(',')[0]?.trim();
-
-  if (!normalizedHost) {
-    return DEFAULT_HOST;
+  if (!siteUrl) {
+    throw new Error(`${SITE_URL_ENV_VAR} must be set to the production domain.`);
   }
 
-  return normalizedHost.replace(/^https?:\/\//, '').replace(/\/.*$/, '');
+  const urlWithProtocol = /^https?:\/\//.test(siteUrl) ? siteUrl : `https://${siteUrl}`;
+  let url: URL;
+
+  try {
+    url = new URL(urlWithProtocol);
+  } catch {
+    throw new Error(`${SITE_URL_ENV_VAR} must be a valid domain or absolute URL.`);
+  }
+
+  if (url.protocol !== 'http:' && url.protocol !== 'https:') {
+    throw new Error(`${SITE_URL_ENV_VAR} must use the http or https protocol.`);
+  }
+
+  if (url.pathname !== '/' || url.search || url.hash) {
+    throw new Error(`${SITE_URL_ENV_VAR} must be a domain only, without a path, query, or hash.`);
+  }
+
+  return url.origin;
 }
 
-function normalizeProtocol(protocol: string | null, host: string): 'http' | 'https' {
-  const normalizedProtocol = protocol?.trim().split(',')[0]?.replace(':', '');
-
-  if (normalizedProtocol === 'http' || normalizedProtocol === 'https') {
-    return normalizedProtocol;
-  }
-
-  return host.startsWith('localhost') || host.startsWith('127.0.0.1') ? 'http' : 'https';
+export function getAbsoluteUrl(path = '/'): string {
+  return getAbsoluteUrlForOrigin(getSiteOrigin(), path);
 }
 
 export function getAbsoluteUrlForOrigin(origin: string, path = '/'): string {
   return new URL(path, origin).toString().replace(/\/$/, '');
 }
 
-export function getSiteOriginFromHeaders(headersList: Headers): string {
-  const host = normalizeHost(headersList.get('x-forwarded-host') ?? headersList.get('host'));
-  const protocol = normalizeProtocol(headersList.get('x-forwarded-proto'), host);
-
-  return `${protocol}://${host}`;
-}
-
-export async function getAbsoluteUrl(path = '/'): Promise<string> {
-  return getAbsoluteUrlForOrigin(await getSiteOrigin(), path);
-}
-
-export async function getSiteOrigin(): Promise<string> {
-  return getSiteOriginFromHeaders(await headers());
+export function getSiteOrigin(): string {
+  return parseSiteOrigin();
 }

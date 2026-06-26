@@ -4,7 +4,7 @@ test.describe('RSS feed', () => {
   test('serves published posts with absolute URLs', async ({ request }) => {
     const response = await request.get('/feed.xml');
     const body = await response.text();
-    const siteUrl = 'http://localhost:3000';
+    const siteUrl = 'https://saeed.guru';
 
     expect(response.ok()).toBe(true);
     expect(response.headers()['content-type']).toContain('application/rss+xml');

@@ -1,32 +1,47 @@
 import { expect, test } from '@playwright/test';
 
-import { getAbsoluteUrlForOrigin, getSiteOriginFromHeaders } from '@/lib/site-url';
+import { getAbsoluteUrl, getSiteOrigin } from '@/lib/site-url';
+
+const originalSiteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+
+test.describe.configure({ mode: 'serial' });
+
+test.afterEach(() => {
+  if (originalSiteUrl === undefined) {
+    delete process.env.VERCEL_PROJECT_PRODUCTION_URL;
+    return;
+  }
+
+  process.env.VERCEL_PROJECT_PRODUCTION_URL = originalSiteUrl;
+});
 
 test.describe('site URL helper', () => {
-  test('uses the request host as the site origin', () => {
-    const headers = new Headers({ host: 'app1.com' });
+  test('uses the Vercel production domain as the site origin', () => {
+    process.env.VERCEL_PROJECT_PRODUCTION_URL = 'example.com';
 
-    expect(getSiteOriginFromHeaders(headers)).toBe('https://app1.com');
-    expect(getAbsoluteUrlForOrigin('https://app1.com', '/blog')).toBe('https://app1.com/blog');
+    expect(getSiteOrigin()).toBe('https://example.com');
+    expect(getAbsoluteUrl('/blog')).toBe('https://example.com/blog');
   });
 
-  test('prefers forwarded host and protocol headers', () => {
-    const headers = new Headers({
-      host: 'internal.vercel.app',
-      'x-forwarded-host': 'app2.com',
-      'x-forwarded-proto': 'https',
-    });
+  test('accepts an absolute URL value', () => {
+    process.env.VERCEL_PROJECT_PRODUCTION_URL = 'https://example.com/';
 
-    expect(getSiteOriginFromHeaders(headers)).toBe('https://app2.com');
+    expect(getSiteOrigin()).toBe('https://example.com');
   });
 
-  test('uses http for localhost requests', () => {
-    const headers = new Headers({ host: 'localhost:3000' });
+  test('throws when the production domain is missing', () => {
+    delete process.env.VERCEL_PROJECT_PRODUCTION_URL;
 
-    expect(getSiteOriginFromHeaders(headers)).toBe('http://localhost:3000');
+    expect(() => getSiteOrigin()).toThrow(
+      'VERCEL_PROJECT_PRODUCTION_URL must be set to the production domain.'
+    );
   });
 
-  test('falls back to the primary production domain when host is missing', () => {
-    expect(getSiteOriginFromHeaders(new Headers())).toBe('https://saeed.guru');
+  test('throws when the production domain includes a path', () => {
+    process.env.VERCEL_PROJECT_PRODUCTION_URL = 'example.com/blog';
+
+    expect(() => getSiteOrigin()).toThrow(
+      'VERCEL_PROJECT_PRODUCTION_URL must be a domain only, without a path, query, or hash.'
+    );
   });
 });

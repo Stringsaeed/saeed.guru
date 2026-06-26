@@ -6,14 +6,12 @@ import path from 'path';
 import { getAllPosts } from '@/lib/posts';
 import { getAbsoluteUrlForOrigin, getSiteOrigin } from '@/lib/site-url';
 
-export const dynamic = 'force-dynamic';
-
 function getFileLastModified(filePath: string) {
   return fs.statSync(path.join(process.cwd(), filePath)).mtime;
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const siteOrigin = await getSiteOrigin();
+  const siteOrigin = getSiteOrigin();
   const posts = getAllPosts();
 
   const postEntries: MetadataRoute.Sitemap = posts.map((post) => ({

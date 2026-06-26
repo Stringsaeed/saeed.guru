@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { getAbsoluteUrl } from '@/lib/site-url';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const pageUrl = await getAbsoluteUrl('/husn-el-muslim');
+  const pageUrl = getAbsoluteUrl('/husn-el-muslim');
 
   return {
     title: 'Husn el Muslim',

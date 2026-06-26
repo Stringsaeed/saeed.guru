@@ -10,7 +10,7 @@ import { getRootStructuredData } from '@/lib/structured-data';
 
 export default async function Home() {
   const latestPost = getAllPosts()[0];
-  const siteOrigin = await getSiteOrigin();
+  const siteOrigin = getSiteOrigin();
 
   return (
     <>

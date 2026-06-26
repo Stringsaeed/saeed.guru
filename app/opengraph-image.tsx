@@ -4,14 +4,13 @@ import { getAbsoluteUrl } from '@/lib/site-url';
 
 export const alt = 'Muhammed Saeed - React Native Engineer';
 export const contentType = 'image/png';
-export const dynamic = 'force-dynamic';
 export const size = {
   width: 1200,
   height: 630,
 };
 
 export default async function Image() {
-  const siteUrl = new URL(await getAbsoluteUrl('/'));
+  const siteUrl = new URL(getAbsoluteUrl('/'));
 
   return new ImageResponse(
     <div

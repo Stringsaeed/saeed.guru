@@ -6,7 +6,7 @@ import { getAllPosts } from '@/lib/posts';
 import { getAbsoluteUrl } from '@/lib/site-url';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const blogUrl = await getAbsoluteUrl('/blog');
+  const blogUrl = getAbsoluteUrl('/blog');
 
   return {
     title: 'Blog',

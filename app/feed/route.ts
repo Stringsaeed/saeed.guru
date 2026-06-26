@@ -1,12 +1,12 @@
 import { getAllPosts } from '@/lib/posts';
-import { getAbsoluteUrlForOrigin, getSiteOriginFromHeaders } from '@/lib/site-url';
+import { getAbsoluteUrl, getSiteOrigin } from '@/lib/site-url';
 
 const FEED_TITLE = 'Muhammed Saeed';
 const FEED_DESCRIPTION =
   'React Native engineering notes, portfolio updates, and technical writing by Muhammed Saeed.';
 const FEED_LANGUAGE = 'en-US';
 
-export const dynamic = 'force-dynamic';
+export const dynamic = 'force-static';
 
 const xmlEntities: Record<string, string> = {
   '&': '&amp;',
@@ -24,15 +24,15 @@ function formatRssDate(date: string): string {
   return new Date(date).toUTCString();
 }
 
-export function GET(request: Request): Response {
-  const siteUrl = getSiteOriginFromHeaders(request.headers);
-  const feedUrl = getAbsoluteUrlForOrigin(siteUrl, '/feed.xml');
+export function GET(): Response {
+  const siteUrl = getSiteOrigin();
+  const feedUrl = getAbsoluteUrl('/feed.xml');
   const posts = getAllPosts();
   const lastBuildDate = posts[0] ? formatRssDate(posts[0].date) : new Date().toUTCString();
 
   const items = posts
     .map((post) => {
-      const postUrl = getAbsoluteUrlForOrigin(siteUrl, post.url);
+      const postUrl = getAbsoluteUrl(post.url);
       const categories =
         post.tags?.map((tag) => `      <category>${escapeXml(tag)}</category>`).join('\n') ?? '';
 

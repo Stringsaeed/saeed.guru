@@ -1,16 +1,21 @@
 import { notFound } from 'next/navigation';
 import { ImageResponse } from 'next/og';
 
-import { getPostBySlug } from '@/lib/posts';
+import { getAllPosts, getPostBySlug } from '@/lib/posts';
 import { getAbsoluteUrl } from '@/lib/site-url';
 
 export const alt = 'Blog post by Muhammed Saeed';
 export const contentType = 'image/png';
-export const dynamic = 'force-dynamic';
 export const size = {
   width: 1200,
   height: 630,
 };
+
+export function generateStaticParams() {
+  return getAllPosts().map((post) => ({
+    slug: post.slug,
+  }));
+}
 
 export default async function Image({ params }: PageProps<'/blog/posts/[slug]'>) {
   const { slug } = await params;
@@ -20,7 +25,7 @@ export default async function Image({ params }: PageProps<'/blog/posts/[slug]'>)
     notFound();
   }
 
-  const postUrl = new URL(await getAbsoluteUrl(post.url));
+  const postUrl = new URL(getAbsoluteUrl(post.url));
 
   return new ImageResponse(
     <div

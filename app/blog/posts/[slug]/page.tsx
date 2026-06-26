@@ -6,11 +6,15 @@ import rehypePrettyCode from 'rehype-pretty-code';
 
 import JsonLd from '@/components/json-ld';
 import { components } from '@/components/mdx-components';
-import { getPostBySlug } from '@/lib/posts';
+import { getAllPosts, getPostBySlug } from '@/lib/posts';
 import { getAbsoluteUrl, getSiteOrigin } from '@/lib/site-url';
 import { getBlogPostStructuredData } from '@/lib/structured-data';
 
-export const dynamic = 'force-dynamic';
+export async function generateStaticParams() {
+  return getAllPosts().map((post) => ({
+    slug: post.slug,
+  }));
+}
 
 export const generateMetadata = async ({ params }: PageProps<'/blog/posts/[slug]'>) => {
   const { slug } = await params;
@@ -19,7 +23,7 @@ export const generateMetadata = async ({ params }: PageProps<'/blog/posts/[slug]
     throw new Error(`Post not found for slug: ${slug}`);
   }
 
-  const url = await getAbsoluteUrl(`/blog/posts/${slug}`);
+  const url = getAbsoluteUrl(`/blog/posts/${slug}`);
 
   return {
     title: post.title,
@@ -46,7 +50,7 @@ export const generateMetadata = async ({ params }: PageProps<'/blog/posts/[slug]
 export default async function PostPage({ params }: PageProps<'/blog/posts/[slug]'>) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
-  const siteOrigin = await getSiteOrigin();
+  const siteOrigin = getSiteOrigin();
 
   if (!post) {
     return notFound();
